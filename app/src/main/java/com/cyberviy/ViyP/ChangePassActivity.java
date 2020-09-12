@@ -18,9 +18,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
-import org.apache.commons.codec.binary.Hex;
-import org.apache.commons.codec.digest.DigestUtils;
-
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -29,7 +26,7 @@ public class ChangePassActivity extends AppCompatActivity {
     final String PREFS_NAME = "appEssentials";
     String TYPE_PASS_1 = "PIN";
     String TYPE_PASS_2 = "PASSWORD";
-    String PREF = "hash";
+    String PREF = "HASH";
     MasterKey masterKey;
     //  String PREF_VAL;
     EditText old_password_et, new_password_1_et, new_password_2_et;
@@ -125,12 +122,10 @@ public class ChangePassActivity extends AppCompatActivity {
         //Fetching hash from sharedPref
         String PREF_VAL = sharedPreferences.getString(PREF, "0");
         Log.d(PREF, PREF_VAL);
-        String HASH = new String(Hex.encodeHex(DigestUtils.sha(old_password)));
-        //String HASH = new String(Hex.encodeHex(DigestUtils.sha512(old_password)));
-        Log.d(PREF, HASH);
-        if (!PREF_VAL.equals(HASH)) {
+        if (!PREF_VAL.equals(old_password)) {
             old_password_et.requestFocus();
             old_password_et.setError("Wrong Password");
+            Log.d(PREF, "Previous: " + PREF_VAL + "Previous password: " + old_password);
             return false;
         }
         if (!(new_password_1.equals(new_password_2))) {
@@ -142,9 +137,8 @@ public class ChangePassActivity extends AppCompatActivity {
     }
 
     private void savePassword(String password) {
-        String HASH = new String(Hex.encodeHex(DigestUtils.sha(password)));
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("hash", HASH).apply();
+        editor.putString(PREF, password).apply();
     }
 
     @Override
