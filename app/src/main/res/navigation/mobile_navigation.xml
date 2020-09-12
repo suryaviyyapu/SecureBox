@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_password">
+
+    <fragment
+        android:id="@+id/nav_social"
+        android:name="com.cyberviy.ViyP.ui.social.SocialFragment"
+        android:label="Social accounts"
+        tools:layout="@layout/social_fragment" />
+
+    <fragment
+        android:id="@+id/nav_password"
+        android:name="com.cyberviy.ViyP.ui.password.PasswordFragment"
+        android:label="Passwords"
+        tools:layout="@layout/fragment_password"></fragment>
+
+    <fragment
+        android:id="@+id/nav_wifi"
+        android:name="com.cyberviy.ViyP.ui.wifi.WifiFragment"
+        android:label="Wifi passwords"
+        tools:layout="@layout/wifi_fragment" />
+</navigation>

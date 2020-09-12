@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_fade"
+    tools:context=".MLock">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="10dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/mlock_l_tv_greet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/capriola"
+            android:text="@string/mlock_st_master_password_greet"
+            android:textSize="15sp"
+            android:layout_margin="15dp"
+            android:layout_gravity="center" />
+
+        <com.andrognito.pinlockview.IndicatorDots
+            android:id="@+id/indicator_dots"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:dotDiameter="30dp"
+            app:dotEmptyBackground="@drawable/dot_empty"
+            app:dotFilledBackground="@drawable/dot_filled"
+            android:layout_gravity="center"
+            app:dotSpacing="12dp"
+            android:layout_margin="20dp" />
+
+        <EditText
+            android:id="@+id/pin_mlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <com.andrognito.pinlockview.PinLockView
+                android:id="@+id/pin_lock_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:keypadButtonSize="60dp"
+                app:keypadDeleteButtonSize="16dp"
+                app:keypadHorizontalSpacing="20dp"
+                app:keypadShowDeleteButton="true"
+                app:keypadTextColor="#000"
+                app:keypadTextSize="16dp"
+                app:keypadVerticalSpacing="16dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="center" />
+        </LinearLayout>
+
+        <include layout="@layout/layout_auth_bio" />
+
+    </LinearLayout>
+
+</LinearLayout>

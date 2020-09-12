@@ -1,0 +1,59 @@
+<resources>
+    <string name="app_name">ViyP</string>
+
+    <string name="mlock_st_create_password">Create your master password</string>
+    <string name="mlock_st_master_password_greet">Welcome, Enter your Master password</string>
+    <!--Start NAV-->
+    <string name="title_activity_home">Password Manager</string>
+    <string name="action_settings">Settings</string>
+
+    <!--END-->
+
+    <!--INTRO SLIDE-->
+    <string name="next">NEXT</string>
+    <string name="skip">SKIP</string>
+    <string name="start">GOT IT</string>
+
+    <string name="slide_1_desc">The easiest way to store your passwords for every website you visit!</string>
+
+    <string name="slide_2_title">Fully Offline</string>
+    <string name="slide_2_desc">No gambling with your data. This app doesn\'t need Internet.</string>
+
+    <string name="slide_3_title">Strong Encryption</string>
+    <string name="slide_3_desc">We use the strongest encryption available to secure your data!</string>
+
+    <string name="slide_4_title">Open Source</string>
+    <string name="slide_4_desc">We are open source. That means full transparency!</string>
+    <string name="title_activity_settings">Settings</string>
+    <!-- Lock  -->
+    <string name="auth">Authenticate with fingerprint</string>
+
+    <!-- Preference Titles -->
+    <string name="security">Security</string>
+    <string name="data">Data</string>
+    <string name="about">About</string>
+
+    <!-- Security Preferences -->
+    <string name="ask_password_before_launch">Ask password before launch</string>
+    <string name="change_master_password">Change master password</string>
+    <string name="scm_description">NOTE: Secure core mode implements more security measures in the app by disabling some functions like copy to clipboard and preventing screenshots in the app</string>
+
+    <!-- Data Preferences -->
+    <string name="data_export">Export data</string>
+    <string name="delete_data">Delete all</string>
+
+    <!--About Preferences-->
+    <string name="about_app">About app</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="help">Help</string>
+    <string name="copy_code">copy</string>
+    <string name="Refresh">refresh</string>
+    <string name="add_record">Add</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Delete</string>
+    <string name="empty_list_text">No data found</string>
+    <string name="version">Version 1.0</string>
+    <string name="Github">Github Link</string>
+    <!--END-->
+</resources>
