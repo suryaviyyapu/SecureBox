@@ -4,13 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,7 +41,6 @@ public class Settings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
-        getIntent().setAction("1");
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -106,30 +103,6 @@ public class Settings extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.v("Example", "onResume");
-
-        String action = getIntent().getAction();
-        // Prevent endless loop by adding a unique action, don't restart if action is present
-        if(action == null || !action.equals("1")) {
-            Intent intent = new Intent(this, MLock.class);
-            startActivity(intent);
-            finish();
-        }
-        // Remove the unique action so the next time onResume is called it will restart
-        else
-            getIntent().setAction(null);
-
-        super.onResume();
     }
 
     private void secureCodeMode(boolean state) {
@@ -237,5 +210,11 @@ public class Settings extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        this.finish();
     }
 }

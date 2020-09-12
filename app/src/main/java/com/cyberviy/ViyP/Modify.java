@@ -119,18 +119,6 @@ public class Modify extends Activity implements View.OnClickListener {
         changePasswordButton.setOnClickListener(this);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.modify_update && updateBtn.isEnabled()) {
-            modify_data();
-        } else if (v.getId() == R.id.modify_delete) {
-            delete_data();
-        } else if (v.getId() == R.id.show_password) {
-            showPassword();
-        } else if (v.getId() == R.id.change_password_button) {
-            changePassword();
-        }
-    }
 
     private void changePassword() {
         updateBtn.setEnabled(true);
@@ -189,5 +177,18 @@ public class Modify extends Activity implements View.OnClickListener {
         }
         setResult(RESULT_OK, intent);
         finish();
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.modify_update && updateBtn.isEnabled()) {
+            modify_data();
+        } else if (v.getId() == R.id.modify_delete) {
+            delete_data();
+        } else if (v.getId() == R.id.show_password) {
+            showPassword();
+        } else if (v.getId() == R.id.change_password_button) {
+            changePassword();
+        }
     }
 }
