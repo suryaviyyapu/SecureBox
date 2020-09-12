@@ -140,6 +140,9 @@ public class MLock extends AppCompatActivity {
             // using the following line to edit/commit prefs
             mlock_tv_greet.setText(R.string.mlock_st_create_password);
             //TODO Remove BioAuth for first run
+            findViewById(R.id.launchAuthentication).setVisibility(View.GONE);
+
+
         }
         PinLockListener mPinLockListener = new PinLockListener() {
             @Override
