@@ -22,7 +22,7 @@ public class Help extends AppCompatActivity {
         setContentView(R.layout.activity_help);
         try {
             PackageInfo pInfo = getApplicationContext().getPackageManager().getPackageInfo(getPackageName(), 0);
-            version = pInfo.versionName;
+            version = "Version " + pInfo.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }

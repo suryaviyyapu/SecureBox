@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class SplashActivity extends AppCompatActivity {
-    private static int SPLASH_TIME_OUT = 3000;
+    private static int SPLASH_TIME_OUT = 1500;
     final String PREFS_NAME = "appEssentials";
     String PREF_KEY = "MASTER_PASSWORD";
     String PREF_KEY_FRUN = "FIRST RUN";

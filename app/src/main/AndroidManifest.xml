@@ -29,15 +29,21 @@
         <activity android:name=".AboutActivity" />
         <activity android:name=".ViewCreds" />
         <activity android:name=".Authorize" />
+        <!--        <activity-->
+        <!--            android:name=".Add"-->
+        <!--            android:label="Add new data"-->
+        <!--            android:parentActivityName=".Home"-->
+        <!--            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />-->
+        <!--        <activity-->
+        <!--            android:name=".Modify"-->
+        <!--            android:label="Modify password"-->
+        <!--            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />-->
         <activity
             android:name=".Add"
-            android:label="Add new data"
-            android:parentActivityName=".Home"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+            android:label="Add data" />
         <activity
             android:name=".Modify"
-            android:label="Modify password"
-            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />
+            android:label="Modify data" />
         <activity android:name=".Help" />
         <activity android:name=".wifi" />
         <activity

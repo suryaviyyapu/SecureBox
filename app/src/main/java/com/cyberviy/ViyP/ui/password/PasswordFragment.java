@@ -39,20 +39,20 @@ import static android.app.Activity.RESULT_OK;
 // Mails
 public class PasswordFragment extends Fragment {
 
-    //TODO remove LOGS
-    private static Application application;
-    private TextView empty;
-    private PasswordViewModel passwordViewModel;
-    private CredsRepository repository;
-    boolean status = false;
+    public static final String NO_DATA = "NO DATA";
     private static final int ADD_RECORD = 1;
     private static final int MODIFY_RECORD = 2;
     private static final int DELETE_RECORD = 3;
     private static final String PROVIDER = "mail";
     private static final String TAG = "P FRAG ";
-    public static final String NO_DATA = "NO DATA";
+    //TODO remove LOGS
+    private static Application application;
+    boolean status = false;
     String PREF_NAME = "Settings";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
+    private TextView empty;
+    private PasswordViewModel passwordViewModel;
+    private CredsRepository repository;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {

@@ -59,6 +59,82 @@ public class MLock extends AppCompatActivity {
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_mlock);
 
+        bioAuth();
+
+        mlock_tv_greet = findViewById(R.id.mlock_l_tv_greet);
+        /*mlock_et_mp = findViewById(R.id.mlock_l_et_mpass);
+        mlock_b_mp = findViewById(R.id.mlock_l_b_setmp);*/
+        mIndicatorDots = findViewById(R.id.indicator_dots);
+        mPinLockView = findViewById(R.id.pin_lock_view);
+
+
+        // Encrypted SharedPrefs
+        try {
+            //x.security
+            masterKey = new MasterKey.Builder(getApplicationContext(), MasterKey.DEFAULT_MASTER_KEY_ALIAS)
+                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
+                    .build();
+            //init sharedpPef
+            sharedPreferences = EncryptedSharedPreferences.create(
+                    getApplicationContext(),
+                    PREFS_NAME,
+                    masterKey,
+                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            );
+        } catch (GeneralSecurityException | IOException e) {
+            e.printStackTrace();
+        }
+
+        //First time then change Text
+        if (sharedPreferences.getBoolean(PREF_KEY, true)) {
+            // Do first run stuff here then set 'firstrun' as false
+            // using the following line to edit/commit prefs
+            mlock_tv_greet.setText(R.string.mlock_st_create_password);
+            //Setting BIOAUTH button to GONE
+            findViewById(R.id.launchAuthentication).setVisibility(View.GONE);
+
+
+        }
+        PinLockListener mPinLockListener = new PinLockListener() {
+            @Override
+            public void onComplete(String pin) {
+
+                if (sharedPreferences.getBoolean(PREF_KEY, true)) {
+                    sharedPreferences.edit().putString(HASH, pin).apply();
+//                  String HASH = new String(Hex.encodeHex(DigestUtils.sha(pin)));
+                    sharedPreferences.edit().putBoolean(PREF_KEY, false).apply();
+                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), Home.class));
+                    finish();
+                } else {
+                    String sp = sharedPreferences.getString(HASH, "0");
+                    if (sp.equals(pin)) {
+//                        Toast.makeText(getApplicationContext(), "Successful login", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        finish();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_SHORT).show();
+                    }
+                }
+
+            }
+
+            @Override
+            public void onEmpty() {
+//                Log.d(TAG, "Pin empty");
+            }
+
+            @Override
+            public void onPinChange(int pinLength, String intermediatePin) {
+                //Log.d(TAG, "Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
+            }
+        };
+        mPinLockView.setPinLockListener(mPinLockListener);
+        mPinLockView.attachIndicatorDots(mIndicatorDots);
+    }
+
+    public void bioAuth() {
         //Create a thread pool with a single thread//
         Executor newExecutor = Executors.newSingleThreadExecutor();
         FragmentActivity activity = this;
@@ -101,84 +177,12 @@ public class MLock extends AppCompatActivity {
                 .setNegativeButtonText("Cancel")
                 //Build the dialog//
                 .build();
-        //Assign an onClickListener to the app’s “Authentication” button//
         findViewById(R.id.launchAuthentication).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 myBiometricPrompt.authenticate(promptInfo);
             }
         });
-
-        mlock_tv_greet = findViewById(R.id.mlock_l_tv_greet);
-        /*mlock_et_mp = findViewById(R.id.mlock_l_et_mpass);
-        mlock_b_mp = findViewById(R.id.mlock_l_b_setmp);*/
-        mIndicatorDots = findViewById(R.id.indicator_dots);
-        mPinLockView = findViewById(R.id.pin_lock_view);
-
-
-        // Encrypted SharedPrefs
-        try {
-            //x.security
-            masterKey = new MasterKey.Builder(getApplicationContext(), MasterKey.DEFAULT_MASTER_KEY_ALIAS)
-                    .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
-                    .build();
-            //init sharedpPef
-            sharedPreferences = EncryptedSharedPreferences.create(
-                    getApplicationContext(),
-                    PREFS_NAME,
-                    masterKey,
-                    EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-                    EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-            );
-        } catch (GeneralSecurityException | IOException e) {
-            e.printStackTrace();
-        }
-
-        //First time then change Text
-        if (sharedPreferences.getBoolean(PREF_KEY, true)) {
-            // Do first run stuff here then set 'firstrun' as false
-            // using the following line to edit/commit prefs
-            mlock_tv_greet.setText(R.string.mlock_st_create_password);
-            //TODO Remove BioAuth for first run
-            findViewById(R.id.launchAuthentication).setVisibility(View.GONE);
-
-
-        }
-        PinLockListener mPinLockListener = new PinLockListener() {
-            @Override
-            public void onComplete(String pin) {
-
-                if (sharedPreferences.getBoolean(PREF_KEY, true)) {
-                    sharedPreferences.edit().putString(HASH, pin).apply();
-//                  String HASH = new String(Hex.encodeHex(DigestUtils.sha(pin)));
-                    sharedPreferences.edit().putBoolean(PREF_KEY, false).apply();
-                    Toast.makeText(getApplicationContext(), "Welcome", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), Home.class));
-                    finish();
-                } else {
-                    String sp = sharedPreferences.getString(HASH, "0");
-                    if (sp.equals(pin)) {
-                        Toast.makeText(getApplicationContext(), "Successful login", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), Home.class));
-                        finish();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Wrong password", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-            }
-
-            @Override
-            public void onEmpty() {
-//                Log.d(TAG, "Pin empty");
-            }
-
-            @Override
-            public void onPinChange(int pinLength, String intermediatePin) {
-                //Log.d(TAG, "Pin changed, new length " + pinLength + " with intermediate pin " + intermediatePin);
-            }
-        };
-        mPinLockView.setPinLockListener(mPinLockListener);
-        mPinLockView.attachIndicatorDots(mIndicatorDots);
     }
+
 }

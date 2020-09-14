@@ -5,53 +5,130 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-
     <TextView
-        android:id="@+id/modify_email"
-        android:layout_width="match_parent"
-        android:fontFamily="@font/capriola"
-        android:layout_height="@dimen/text_view_size"
-        android:gravity="center"
-        android:textSize="@dimen/text_medium_size"
-        android:hint="Email@viyP.com" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:text="Tap on Email/Password to COPY" />
 
     <LinearLayout
+        android:id="@+id/layout_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:onClick="copy_email"
+        android:weightSum="3">
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/layout_action1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Password"
-            android:fontFamily="@font/capriola"
-            android:layout_gravity="center"
-            android:textSize="@dimen/text_medium_size" />
-
-        <TextView
-            android:id="@+id/modify_old_password"
-            android:layout_width="130dp"
-            android:layout_height="@dimen/text_view_size"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
             android:gravity="center"
-            android:text="****"
-            android:fontFamily="@font/capriola"
-            android:textSize="@dimen/text_medium_size" />
+            android:orientation="horizontal"
+            android:weightSum="1">
 
-        <TextView
-            android:id="@+id/show_password"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/capriola"
+                android:text="Email"
+                android:textSize="@dimen/text_medium_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_action2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="SHOW" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1.5">
+
+            <TextView
+                android:id="@+id/modify_email"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_size"
+                android:fontFamily="@font/capriola"
+                android:gravity="center"
+                android:hint="Email@viyP.com"
+                android:textSize="@dimen/text_medium_size" />
+        </LinearLayout>
+
     </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:onClick="copy_password"
+        android:weightSum="3">
+
+        <LinearLayout
+            android:id="@+id/layout1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:fontFamily="@font/capriola"
+                android:text="Password"
+                android:textSize="@dimen/text_medium_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="1.5">
+
+            <TextView
+                android:id="@+id/modify_old_password"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/text_view_size"
+                android:fontFamily="@font/capriola"
+                android:gravity="center"
+                android:hint="PASSWORD"
+                android:inputType="textPassword"
+                android:textSize="@dimen/text_medium_size" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/show_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show password"
+        android:fontFamily="@font/capriola"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="12dp"
+        android:checked="false" />
 
     <Button
         android:id="@+id/change_password_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_margin="2dp"
         android:background="@drawable/btn_shape_capsule_safe"
         android:fontFamily="@font/capriola"
-        android:layout_margin="2dp"
+        android:textColor="@color/white"
         android:text="Change password" />
 
     <LinearLayout
@@ -65,51 +142,52 @@
             android:id="@+id/modify_new_password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/text_view_size"
-            android:maxLines="1"
+            android:autofillHints="false"
             android:hint="New password"
             android:inputType="textPassword"
             android:maxLength="32"
-            android:autofillHints="false" />
+            android:maxLines="1" />
 
         <CheckBox
             android:id="@+id/modify_show_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Show password"
-            android:fontFamily="@font/capriola"
-            android:layout_marginBottom="12dp"
             android:layout_marginTop="12dp"
-            android:checked="false" />
+            android:layout_marginBottom="12dp"
+            android:checked="false"
+            android:fontFamily="@font/capriola"
+            android:text="Show password" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
         android:gravity="center_horizontal"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="2">
 
         <Button
             android:id="@+id/modify_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/btn_shape_capsule_safe"
-            android:fontFamily="@font/capriola"
             android:layout_margin="2dp"
             android:layout_weight="1"
-            android:text="@string/btn_update" />
+            android:background="@drawable/btn_shape_capsule_safe"
+            android:fontFamily="@font/capriola"
+            android:text="@string/btn_update"
+            android:textColor="@color/white" />
 
 
         <Button
             android:id="@+id/modify_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/capriola"
-            android:textColor="@color/white"
-            android:background="@drawable/btn_shape_capsule_danger"
-            android:layout_weight="1"
             android:layout_margin="2dp"
-            android:text="@string/btn_delete" />
+            android:layout_weight="1"
+            android:background="@drawable/btn_shape_capsule_danger"
+            android:fontFamily="@font/capriola"
+            android:text="@string/btn_delete"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

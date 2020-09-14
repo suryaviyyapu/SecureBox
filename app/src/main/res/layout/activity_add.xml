@@ -11,18 +11,19 @@
 
         <TextView
             android:id="@+id/prov_tv"
-            android:text="Provider"
             android:layout_width="wrap_content"
-            android:gravity="center"
+            android:layout_height="@dimen/text_view_size"
             android:fontFamily="@font/capriola"
-            android:textSize="@dimen/text_medium_size"
-            android:layout_height="@dimen/text_view_size" />
+            android:gravity="center"
+            android:text="Provider"
+            android:textSize="@dimen/text_medium_size" />
 
         <Spinner
             android:id="@+id/provider_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center" />
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp" />
     </LinearLayout>
 
     <EditText
@@ -30,12 +31,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:maxLength="32"
         android:fontFamily="@font/capriola"
-        android:shadowColor="@color/colorAccent"
         android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:maxLength="32"
+        android:shadowColor="@color/extra_color"
         android:textColorHint="#000"
-        android:inputType="textEmailAddress">
+        android:textStyle="normal">
 
         <requestFocus />
     </EditText>
@@ -48,27 +50,30 @@
         android:fontFamily="@font/capriola"
         android:hint="Password"
         android:inputType="textPassword"
+        android:maxLines="1"
+        android:shadowColor="@color/extra_color"
         android:textColorHint="#000"
-        android:maxLines="1" />
+        android:textStyle="normal" />
 
     <CheckBox
         android:id="@+id/add_show_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Show password"
-        android:fontFamily="@font/capriola"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:checked="false" />
+        android:checked="false"
+        android:fontFamily="@font/capriola"
+        android:text="Show password" />
 
     <Button
         android:id="@+id/add_record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:fontFamily="@font/capriola"
-        android:background="@drawable/btn_shape_capsule_safe"
         android:layout_margin="2dp"
-        android:text="@string/add_record" />
+        android:background="@drawable/btn_shape_capsule_safe"
+        android:fontFamily="@font/capriola"
+        android:text="@string/add_record"
+        android:textColor="@color/white" />
 
 </LinearLayout>

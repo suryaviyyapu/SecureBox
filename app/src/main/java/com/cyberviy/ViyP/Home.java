@@ -3,6 +3,7 @@ package com.cyberviy.ViyP;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,9 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -26,6 +30,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
+import com.cyberviy.ViyP.models.ViyCred;
+import com.cyberviy.ViyP.ui.password.PasswordViewModel;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
@@ -34,15 +40,21 @@ import java.util.Random;
 
 public class Home extends AppCompatActivity {
 
+    public static final String NO_DATA = "NO DATA";
     private static final String COLLECTION = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*_=+-";
     /*private static final String ALPHA_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private static final String ALPHA = "abcdefghijklmnopqrstuvwxyz";
     private static final String NUMERIC = "0123456789";
     private static final String SPECIAL_CHARS = "!@#$%^&*_=+-";*/
-    SharedPreferences sharedPreferences;
+    private static final int ADD_RECORD = 1;
+    private static final String TAG = "HOME";
+    private static final String PROVIDER = "mail";
     final String PREFS_NAME = "appEssentials";
+    SharedPreferences sharedPreferences;
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
     MasterKey masterKey = null;
+    String PASSWORD = "";
+    AlertDialog.Builder builder;
     private AppBarConfiguration mAppBarConfiguration;
     //TODO Generate password from add activity
 
@@ -59,6 +71,7 @@ public class Home extends AppCompatActivity {
         View view = navigationView.getHeaderView(0);
         ImageButton imageButton = view.findViewById(R.id.refresh);
         final TextView textView1 = view.findViewById(R.id.generate_password);
+        builder = new AlertDialog.Builder(this);
 
         // Encrypted SharedPrefs
         try {
@@ -106,6 +119,10 @@ public class Home extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -148,7 +165,7 @@ public class Home extends AppCompatActivity {
             Toast.makeText(this, "Secure code mode is Enabled. Copying is not allowed  ", Toast.LENGTH_SHORT).show();
         } else {
             TextView textView = findViewById(R.id.generate_password);
-            String gn_password = textView.getText().toString().trim();
+            final String gn_password = textView.getText().toString().trim();
             ClipboardManager clipboard = (ClipboardManager)
                     getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("Password", gn_password);
@@ -156,7 +173,44 @@ public class Home extends AppCompatActivity {
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(getApplicationContext(), "Copied!", Toast.LENGTH_SHORT).show();
             }
+            builder.setMessage("Do you want to add this password to the database?")
+                    .setTitle("Alert")
+                    .setCancelable(true)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent intent = new Intent(getApplicationContext(), Add.class);
+                            intent.putExtra(PASSWORD, gn_password);
+                            startActivityForResult(intent, ADD_RECORD);
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
+                    });
         }
+        AlertDialog alert = builder.create();
+        alert.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if (requestCode == ADD_RECORD && resultCode == RESULT_OK) {
+            String providerName = data.getStringExtra(Add.EXTRA_PROVIDER_NAME);
+            String enc_passwd = data.getStringExtra(Add.EXTRA_ENCRYPT);
+            String enc_email = data.getStringExtra(Add.EXTRA_EMAIL);
+            ViyCred viyCred = new ViyCred(PROVIDER, providerName, enc_email, enc_passwd);
+            Log.d(TAG, "Provider: " + PROVIDER + " EMAIL: " + enc_email + " ENC_DATA: " + enc_passwd);
+            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences(PROVIDER, Context.MODE_PRIVATE);
+            PasswordViewModel passwordViewModel = new ViewModelProvider(this).get(PasswordViewModel.class);
+            passwordViewModel.insert(viyCred);
+            Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Not Saved", Toast.LENGTH_SHORT).show();
+        }
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private String generatePassword() {

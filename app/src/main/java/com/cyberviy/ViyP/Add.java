@@ -1,10 +1,10 @@
 package com.cyberviy.ViyP;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -13,10 +13,11 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
@@ -28,16 +29,17 @@ import java.security.GeneralSecurityException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Add extends Activity implements View.OnClickListener {
+public class Add extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_PROVIDER_NAME = "com.cyberviy.ViyP.EXTRA_PROVIDER_NAME";
     public static final String EXTRA_PROVIDER = "com.cyberviy.ViyP.EXTRA_PROVIDER";
     public static final String EXTRA_ENCRYPT = "com.cyberviy.ViyP.EXTRA_ENCRYPT";
     public static final String EXTRA_EMAIL = "com.cyberviy.ViyP.EXTRA_EMAIL";
     public static final String EXTRA_IV = "com.cyberviy.ViyP.EXTRA_IV";
     public static final String EXTRA_SALT = "com.cyberviy.ViyP.EXTRA_SALT";
+    public static final String PASSWORD = "";
     final String PREFS_NAME = "appEssentials";
     MasterKey masterKey = null;
-    String providerNameString;
+    String providerNameString, passwordFromCOPY;
     String[] providersEmail = {
             "Gmail", "Outlook", "Amazon", "Protonmail", "Yahoo",
             "Apple", "Paypal", "Github", "Spotify", "Stackoverflow",
@@ -60,6 +62,11 @@ public class Add extends Activity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add);
+
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         //ProgressBar progressBar = findViewById(R.id.progress_bar);
         providerName = findViewById(R.id.provider_name);
@@ -89,12 +96,7 @@ public class Add extends Activity implements View.OnClickListener {
         }
 
         if (sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, false)) {
-            try {
-                ImageButton copyImage = findViewById(R.id.copy);
-                copyImage.setEnabled(false);
-            } catch (Exception e) {
-                e.getStackTrace();
-            }
+
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         }
 
@@ -116,6 +118,9 @@ public class Add extends Activity implements View.OnClickListener {
     protected void onStart() {
         super.onStart();
         provider = getIntent().getStringExtra(EXTRA_PROVIDER);
+        if (provider == null)
+            provider = "mail";
+        passwordFromCOPY = getIntent().getStringExtra(PASSWORD);
         assert provider != null;
         switch (provider) {
             case "social":
@@ -143,6 +148,7 @@ public class Add extends Activity implements View.OnClickListener {
                 break;
             default:
                 email.setHint("Email");
+                password.setText(passwordFromCOPY);
                 ArrayAdapter arrayAdapterEmail = new ArrayAdapter(this, android.R.layout.simple_spinner_item, providersEmail);
                 arrayAdapterEmail.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 //Setting the ArrayAdapter data on the Spinner
@@ -210,6 +216,18 @@ public class Add extends Activity implements View.OnClickListener {
     public void onClick(View v) {
         if (v.getId() == R.id.add_record) {
             save_data();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }
