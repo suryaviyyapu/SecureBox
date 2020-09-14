@@ -3,7 +3,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="text_view_size">50dp</dimen>
-    <dimen name="text_medium_size">16sp</dimen>
+    <dimen name="text_medium_size">18sp</dimen>
+    <dimen name="text_hi_size">24sp</dimen>
 
     <!--SLIDE-->
     <dimen name="dots_height">30dp</dimen>

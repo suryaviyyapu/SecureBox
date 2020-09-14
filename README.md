@@ -33,5 +33,9 @@
 **8) OPEN SOURCE**
 - We are open source, That means full transparency.
 
+**Thanks to**
+- <a href="https://github.com/iam-v0id">iam-v0id</a> (Suggestions and README)
+
+
 # SCREENSHOTS
  <img src=https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/1.jpg width="270" height="565">  <img src=https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/2.jpg width="270" height="565">  <img src=https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/3.jpg width="270" height="565"> 

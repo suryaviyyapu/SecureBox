@@ -28,6 +28,8 @@ public class Help extends AppCompatActivity {
         }
         ver = findViewById(R.id.version);
         ver.setText(version);
+
+
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -38,8 +40,12 @@ public class Help extends AppCompatActivity {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.addCategory(Intent.CATEGORY_BROWSABLE);
-        intent.setData(Uri.parse(String.format("https://github.com/%s", "suryaViyyapu/viyP")));
+        intent.setData(Uri.parse(String.format("https://github.com/%s", "suryaviyyapu/viyp")));
         startActivity(intent);
+    }
+
+    public void whats_new(View view) {
+        startActivity(new Intent(this, AboutActivity.class));
     }
 
     @Override

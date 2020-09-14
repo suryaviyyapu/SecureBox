@@ -33,7 +33,7 @@
             <TextView
                 android:id="@+id/provider"
                 android:maxLines="2"
-                android:textSize="@dimen/text_medium_size"
+                android:textSize="@dimen/default_text_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="24"
@@ -45,17 +45,12 @@
             <TextView
                 android:id="@+id/imp_cat"
                 android:padding="4dp"
-                android:textSize="@dimen/text_medium_size"
+                android:textSize="@dimen/default_text_size"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/capriola"
                 android:textAppearance="?attr/textAppearanceBody1"
                 android:text="Mail" />
-            <!--            <TextView-->
-            <!--                android:id="@+id/imp_cat2"-->
-            <!--                android:text="P******d"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"/>-->
 
 
         </LinearLayout>
