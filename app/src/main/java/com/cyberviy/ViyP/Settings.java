@@ -1,9 +1,14 @@
 package com.cyberviy.ViyP;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,25 +18,37 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
+import androidx.sqlite.db.SimpleSQLiteQuery;
 
+import com.cyberviy.ViyP.Utils.CSVReader;
+import com.cyberviy.ViyP.Utils.CSVWriter;
+import com.cyberviy.ViyP.room.ViyCredDB;
+import com.cyberviy.ViyP.room.ViyCredDao;
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class Settings extends AppCompatActivity {
     private static final String DATABASE_NAME = "CredsDB";
     private static final int MAXIMUM_DATABASE_FILE = 2;
-    private static final String FILE_NAME = "Viyp-Backup-";
+    private static final String FILE_NAME = "Viyp-Backup";
     private static final String BACKUP_RESTORE_ROLLBACK_FILE_NAME = "CredsDB";
     final String PREFS_NAME = "appEssentials";
     SharedPreferences sharedPreferences = null;
@@ -50,6 +67,8 @@ public class Settings extends AppCompatActivity {
     Button updateApp;
     ProgressBar progressBar;
     boolean secureCodeModeState;
+    private int STORAGE_PERMISSION_CODE = 101;
+
 
 
     @Override
@@ -200,9 +219,64 @@ public class Settings extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void exportData(View view) {
-//        backupDatabase(getApplicationContext());
+    // Function to check and request permission
+    public void checkPermission(String permission, int requestCode)
+    {
+
+        // Checking if permission is not granted
+        if (ContextCompat.checkSelfPermission(
+                this,
+                permission)
+                == PackageManager.PERMISSION_DENIED) {
+            ActivityCompat
+                    .requestPermissions(
+                            this,
+                            new String[] { permission },
+                            requestCode);
+        }
     }
+    // This function is called when user accept or decline the permission.
+// Request Code is used to check which permission called this function.
+// This request code is provided when user is prompt for permission.
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           @NonNull String[] permissions,
+                                           @NonNull int[] grantResults)
+    {
+        super
+                .onRequestPermissionsResult(requestCode,
+                        permissions,
+                        grantResults);
+
+        if (requestCode == STORAGE_PERMISSION_CODE) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this,
+                        "Storage Permission Granted",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+            else {
+                Toast.makeText(this,
+                        "Storage Permission Denied",
+                        Toast.LENGTH_SHORT)
+                        .show();
+            }
+        }
+    }
+
+
+
+    public void exportData(View view) {
+//        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+    }
+
+    public void restoreData(View view) throws IOException {
+        // Restore
+
+    }
+
 
     public void deleteData(View view) {
         //AlertDialog START
@@ -238,10 +312,6 @@ public class Settings extends AppCompatActivity {
 
         //AlertDialog END
 
-    }
-
-    public void restoreData(View view) {
-        // Restore
     }
 
     public void aboutApp(View view) {
