@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,7 +140,6 @@ public class PasswordFragment extends Fragment {
             String enc_passwd = data.getStringExtra(Add.EXTRA_ENCRYPT);
             String enc_email = data.getStringExtra(Add.EXTRA_EMAIL);
             ViyCred viyCred = new ViyCred(PROVIDER, providerName, enc_email, enc_passwd);
-            Log.d(TAG, "Provider: " + PROVIDER + " EMAIL: " + enc_email + " ENC_DATA: " + enc_passwd);
             //For showing "No data" or not on activity if the list is empty
             SharedPreferences sharedPreferences = this.getActivity().getSharedPreferences(PROVIDER, Context.MODE_PRIVATE);
             sharedPreferences.edit().putBoolean(NO_DATA, true).apply();
@@ -168,19 +166,6 @@ public class PasswordFragment extends Fragment {
                 passwordViewModel.delete(viyCred);
                 Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
             }
-//
-        } else if (requestCode == DELETE_RECORD && resultCode == RESULT_OK) {
-//            int id = data.getIntExtra(Modify.EXTRA_ID, -1);
-//            if (id == -1) {
-//                Toast.makeText(getContext(), "Cannot be deleted!", Toast.LENGTH_LONG).show();
-//                return;
-//            }
-//            String enc_passwd = data.getStringExtra(Modify.EXTRA_ENCRYPT);
-//            String enc_email = data.getStringExtra(Modify.EXTRA_EMAIL);
-//            ViyCred viyCred = new ViyCred(PROVIDER, enc_email, enc_passwd);
-//            viyCred.setId(id);
-        } else {
-            Toast.makeText(getContext(), "Not Saved", Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -19,14 +20,21 @@ import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
 
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class Settings extends AppCompatActivity {
-    SharedPreferences sharedPreferences = null;
+    private static final String DATABASE_NAME = "CredsDB";
+    private static final int MAXIMUM_DATABASE_FILE = 2;
+    private static final String FILE_NAME = "Viyp-Backup-";
+    private static final String BACKUP_RESTORE_ROLLBACK_FILE_NAME = "CredsDB";
     final String PREFS_NAME = "appEssentials";
+    SharedPreferences sharedPreferences = null;
     String PREF_KEY = "MASTER_PASSWORD";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
     String PREF_KEY_SCM_COPY = "SCM_COPY";
@@ -35,12 +43,20 @@ public class Settings extends AppCompatActivity {
     String TYPE_PASS_1 = "PIN";
     String TYPE_PASS_2 = "PASSWORD";
     MasterKey masterKey = null;
+    String PACKAGE_NAME;
+    String repo = "suryaviyyapu";
+    String pack = "ViyP";
     TextView change_password, export_data, delete_data, about_app;
+    Button updateApp;
+    ProgressBar progressBar;
+    boolean secureCodeModeState;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.settings_activity);
+        PACKAGE_NAME = getApplicationContext().getPackageName();
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
@@ -68,13 +84,33 @@ public class Settings extends AppCompatActivity {
         export_data = findViewById(R.id.export_data);
         delete_data = findViewById(R.id.delete_all_data);
         about_app = findViewById(R.id.about_app);
+        updateApp = findViewById(R.id.update_app);
+        progressBar = findViewById(R.id.progress_bar);
         final SwitchMaterial askPasswordLaunchSwitch = findViewById(R.id.ask_password_launch);
         final SwitchMaterial secureCoreModeSwitch = findViewById(R.id.secure_core_mode);
-        final boolean secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, true);
+
+        secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, true);
         final boolean askPasswordLaunchState = sharedPreferences.getBoolean(PREF_KEY, true);
         final boolean status = sharedPreferences.getBoolean(NO_DATA, false);
+
         secureCoreModeSwitch.setChecked(secureCodeModeState);
         askPasswordLaunchSwitch.setChecked(askPasswordLaunchState);
+        updateApp.setEnabled(true);
+
+        //Checking for updates
+        updateApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!secureCodeModeState) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    updateApp();
+                    progressBar.setVisibility(View.GONE);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Secure code mode enabled cannot check for updates", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         askPasswordLaunchSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -113,14 +149,24 @@ public class Settings extends AppCompatActivity {
 
             editor.putBoolean(PREF_KEY_SCM_COPY, false).apply();
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-            Toast.makeText(getApplicationContext(), "Secure code mode: ON", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Secure code mode is active. Restart to apply changes", Toast.LENGTH_LONG).show();
         } else {
             //to do true
             //set copy to clipboard and screenshot ability
             editor.putBoolean(PREF_KEY_SCM_SCREENSHOTS, true).apply();
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
-            Toast.makeText(getApplicationContext(), "Secure code mode: OFF", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Secure code mode is inactive", Toast.LENGTH_LONG).show();
         }
+    }
+
+    public void updateApp() {
+        AppUpdater appUpdater = new AppUpdater(this)
+                .showEvery(5)
+                .setDisplay(Display.NOTIFICATION)
+                .setDisplay(Display.DIALOG)
+                .setUpdateFrom(UpdateFrom.GITHUB)
+                .setGitHubUserAndRepo(repo, pack);
+        appUpdater.start();
     }
 
     private void askPassword(boolean state) {
@@ -134,7 +180,6 @@ public class Settings extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Password: OFF", Toast.LENGTH_LONG).show();
         }
     }
-
 
     public void changePassword(View view) {
         TextView PIN = findViewById(R.id.change_master_password_option_1);
@@ -156,7 +201,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void exportData(View view) {
-        Toast.makeText(getApplicationContext(), "Export successful", Toast.LENGTH_SHORT).show();
+//        backupDatabase(getApplicationContext());
     }
 
     public void deleteData(View view) {
@@ -165,7 +210,7 @@ public class Settings extends AppCompatActivity {
         // Setting Alert Dialog Title
         alertDialogBuilder.setTitle("Delete Everything");
         // Setting Alert Dialog Message
-        alertDialogBuilder.setMessage("Are you sure??? You want to delete everything?");
+        alertDialogBuilder.setMessage("Are you sure, You want to delete everything?");
         alertDialogBuilder.setCancelable(false);
         //Positive button
         alertDialogBuilder.setPositiveButton("yes", new DialogInterface.OnClickListener() {
@@ -173,7 +218,6 @@ public class Settings extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface arg0, int arg1) {
                 PasswordViewModel passwordViewModel = new PasswordViewModel(getApplication());
-                ProgressBar progressBar = findViewById(R.id.progress_bar);
                 progressBar.setVisibility(View.VISIBLE);
                 passwordViewModel.deleteAllNotes();
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -194,6 +238,10 @@ public class Settings extends AppCompatActivity {
 
         //AlertDialog END
 
+    }
+
+    public void restoreData(View view) {
+        // Restore
     }
 
     public void aboutApp(View view) {

@@ -175,8 +175,6 @@ public class SocialFragment extends Fragment {
 //            String enc_email = data.getStringExtra(Modify.EXTRA_EMAIL);
 //            ViyCred viyCred = new ViyCred(PROVIDER, enc_email, enc_passwd);
 //            viyCred.setId(id);
-        } else {
-            Toast.makeText(getContext(), "Not Saved", Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

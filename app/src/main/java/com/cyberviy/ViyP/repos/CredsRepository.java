@@ -98,17 +98,17 @@ public class CredsRepository {
         }
     }
 
-    private static class DeleteAllNotesAsyncTask extends AsyncTask<Void, Void, Void> {
-        private ViyCredDao viyCredDao;
+     private static class DeleteAllNotesAsyncTask extends AsyncTask<Void, Void, Void> {
+         private ViyCredDao viyCredDao;
 
-        private DeleteAllNotesAsyncTask(ViyCredDao viyCredDao) {
-            this.viyCredDao = viyCredDao;
-        }
+         private DeleteAllNotesAsyncTask(ViyCredDao viyCredDao) {
+             this.viyCredDao = viyCredDao;
+         }
 
-        @Override
-        protected Void doInBackground(Void... voids) {
-            viyCredDao.deleteAllNotes();
-            return null;
+         @Override
+         protected Void doInBackground(Void... voids) {
+             viyCredDao.deleteAllNotes();
+             return null;
         }
     }
 }
