@@ -17,137 +17,153 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/capriola"
-                    android:padding="10dp"
                     android:text="@string/check_update"
-                    android:layout_gravity="center"
-                    android:textColor="@color/colorAccent" />
+                    android:fontFamily="@font/capriola"
+                    android:padding="5dp" />
 
                 <Button
                     android:id="@+id/update_app"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
                     android:layout_margin="2dp"
                     android:background="@drawable/btn_shape_capsule_safe"
+                    android:enabled="false"
                     android:fontFamily="@font/capriola"
+                    android:padding="5dp"
                     android:text="@string/update"
-                    android:textColor="@color/white"
-                    android:enabled="false" />
+                    android:textColor="@color/white" />
             </LinearLayout>
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/capriola"
-                android:padding="10dp"
-                android:text="@string/security"
-                android:textColor="@color/colorAccent" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/capriola"
-                    android:paddingStart="30dp"
-                    android:paddingTop="20dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="20dp"
-                    android:text="@string/ask_password_before_launch" />
+                    android:padding="10dp"
+                    android:text="@string/security"
+                    android:textColor="@color/colorAccent" />
 
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/ask_password_launch"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:fontFamily="@font/capriola"
-                    android:paddingStart="30dp"
-                    android:paddingTop="20dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="20dp" />
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="20dp"
+                            android:text="@string/ask_password_before_launch" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/ask_password_launch"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:fontFamily="@font/capriola"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="20dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/change_master_password"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:onClick="changePassword"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="30dp"
+                            android:paddingBottom="20dp"
+                            android:text="@string/change_master_password" />
+
+                        <TextView
+                            android:id="@+id/change_master_password_option_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:onClick="changePasswordToPIN"
+                            android:paddingStart="50dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="30dp"
+                            android:paddingBottom="20dp"
+                            android:text="PIN"
+                            android:visibility="gone" />
+
+                        <!--                        <TextView-->
+                        <!--                            android:id="@+id/change_master_password_option_2"-->
+                        <!--                            android:layout_width="match_parent"-->
+                        <!--                            android:layout_height="wrap_content"-->
+                        <!--                            android:fontFamily="@font/capriola"-->
+                        <!--                            android:onClick="changePasswordToPassword"-->
+                        <!--                            android:paddingStart="50dp"-->
+                        <!--                            android:paddingTop="20dp"-->
+                        <!--                            android:paddingEnd="30dp"-->
+                        <!--                            android:paddingBottom="20dp"-->
+                        <!--                            android:text="Password"-->
+                        <!--                            android:visibility="gone" />-->
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="80dp"
+                            android:paddingBottom="20dp"
+                            android:text="Secure core mode" />
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/secure_core_mode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:fontFamily="@font/capriola"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="20dp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/capriola"
+                        android:paddingStart="30dp"
+                        android:text="@string/scm_description" />
+                </LinearLayout>
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/change_master_password"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/capriola"
-                android:onClick="changePassword"
-                android:paddingStart="30dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="30dp"
-                android:paddingBottom="20dp"
-                android:text="@string/change_master_password" />
-
-            <TextView
-                android:id="@+id/change_master_password_option_1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/capriola"
-                android:onClick="changePasswordToPIN"
-                android:paddingStart="50dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="30dp"
-                android:paddingBottom="20dp"
-                android:text="PIN"
-                android:visibility="gone" />
-
-            <TextView
-                android:id="@+id/change_master_password_option_2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/capriola"
-                android:onClick="changePasswordToPassword"
-                android:paddingStart="50dp"
-                android:paddingTop="20dp"
-                android:paddingEnd="30dp"
-                android:paddingBottom="20dp"
-                android:text="Password"
-                android:visibility="gone" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/capriola"
-                    android:paddingStart="30dp"
-                    android:paddingTop="20dp"
-                    android:paddingEnd="80dp"
-                    android:paddingBottom="20dp"
-                    android:text="Secure core mode" />
-
-                <com.google.android.material.switchmaterial.SwitchMaterial
-                    android:id="@+id/secure_core_mode"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:fontFamily="@font/capriola"
-                    android:paddingStart="30dp"
-                    android:paddingTop="20dp"
-                    android:paddingEnd="5dp"
-                    android:paddingBottom="20dp" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:fontFamily="@font/capriola"
-                android:text="@string/scm_description" />
-
         </LinearLayout>
 
         <View

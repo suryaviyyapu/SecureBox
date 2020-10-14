@@ -1,14 +1,10 @@
 package com.cyberviy.ViyP;
 
-import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -26,22 +22,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
-import androidx.sqlite.db.SimpleSQLiteQuery;
 
-import com.cyberviy.ViyP.Utils.CSVReader;
-import com.cyberviy.ViyP.Utils.CSVWriter;
-import com.cyberviy.ViyP.room.ViyCredDB;
-import com.cyberviy.ViyP.room.ViyCredDao;
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
 import com.github.javiersantos.appupdater.AppUpdater;
 import com.github.javiersantos.appupdater.enums.Display;
 import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
@@ -202,9 +189,10 @@ public class Settings extends AppCompatActivity {
 
     public void changePassword(View view) {
         TextView PIN = findViewById(R.id.change_master_password_option_1);
-        TextView Password = findViewById(R.id.change_master_password_option_2);
+        //TODO Change to password disabled for now
+        //TextView Password = findViewById(R.id.change_master_password_option_2);
         PIN.setVisibility(View.VISIBLE);
-        Password.setVisibility(View.VISIBLE);
+        //Password.setVisibility(View.VISIBLE);
     }
 
     public void changePasswordToPIN(View view) {
@@ -256,8 +244,7 @@ public class Settings extends AppCompatActivity {
                         "Storage Permission Granted",
                         Toast.LENGTH_SHORT)
                         .show();
-            }
-            else {
+            } else {
                 Toast.makeText(this,
                         "Storage Permission Denied",
                         Toast.LENGTH_SHORT)
@@ -267,14 +254,18 @@ public class Settings extends AppCompatActivity {
     }
 
 
+    public void getItemsForExport() {
+
+    }
 
     public void exportData(View view) {
 //        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
+        Toast.makeText(getApplicationContext(), "Export data", Toast.LENGTH_SHORT).show();
     }
 
     public void restoreData(View view) throws IOException {
         // Restore
-
+        Toast.makeText(getApplicationContext(), "Restore data successful", Toast.LENGTH_SHORT).show();
     }
 
 

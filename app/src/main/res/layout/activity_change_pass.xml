@@ -49,6 +49,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Submit"
+            android:textColor="@color/white"
             android:layout_margin="20dp"
             android:background="@drawable/btn_shape_capsule_safe" />
 

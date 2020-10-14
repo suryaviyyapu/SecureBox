@@ -39,8 +39,6 @@ public class Add extends AppCompatActivity implements View.OnClickListener {
     public static final String EXTRA_SALT = "com.cyberviy.ViyP.EXTRA_SALT";
     public static final String PASSWORD = "";
     final String PREFS_NAME = "appEssentials";
-    MasterKey masterKey = null;
-    String providerNameString, passwordFromCOPY;
     String[] providersEmail = {
             "Gmail", "Outlook", "Amazon", "Protonmail", "Yahoo",
             "Apple", "Paypal", "Github", "Spotify", "Stackoverflow",
@@ -51,6 +49,8 @@ public class Add extends AppCompatActivity implements View.OnClickListener {
             "Foursquare", "Reddit", "Slack", "Snapchat", "Tinder",
             "Linkedin", "Pinterest", "Tumblr", "Other"
     };
+    MasterKey masterKey = null;
+    String providerNameString, passwordFromCOPY;
     Button add_button;
     Spinner providerName;
     TextView prov_tv;
@@ -84,7 +84,7 @@ public class Add extends AppCompatActivity implements View.OnClickListener {
             masterKey = new MasterKey.Builder(getApplicationContext(), MasterKey.DEFAULT_MASTER_KEY_ALIAS)
                     .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
                     .build();
-            //init sharedpPef
+            //init sharedPef
             sharedPreferences = EncryptedSharedPreferences.create(
                     getApplicationContext(),
                     PREFS_NAME,

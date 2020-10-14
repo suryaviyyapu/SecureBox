@@ -1,6 +1,5 @@
 package com.cyberviy.ViyP.ui.password;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -44,8 +43,6 @@ public class PasswordFragment extends Fragment {
     private static final int DELETE_RECORD = 3;
     private static final String PROVIDER = "mail";
     private static final String TAG = "P FRAG ";
-    //TODO remove LOGS
-    private static Application application;
     boolean status = false;
     String PREF_NAME = "Settings";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";

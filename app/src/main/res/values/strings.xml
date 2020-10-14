@@ -36,7 +36,7 @@
     <!-- Security Preferences -->
     <string name="ask_password_before_launch">Ask password before launch</string>
     <string name="change_master_password">Change master password</string>
-    <string name="scm_description">NOTE: Secure core mode implements more security measures in the app by disabling some functions like copy to clipboard and preventing screenshots in the app</string>
+    <string name="scm_description">Disables copy to clipboard and screenshots in the app</string>
 
     <!-- Data Preferences -->
     <string name="data_export">Export data</string>
@@ -57,6 +57,6 @@
     <string name="Github">Github Link</string>
     <string name="data_restore">Restore data</string>
     <string name="check_update">Check for updates</string>
-    <string name="update">Update</string>
+    <string name="update">Update app</string>
     <!--END-->
 </resources>
