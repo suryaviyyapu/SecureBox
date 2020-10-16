@@ -17,15 +17,17 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/check_update"
                     android:fontFamily="@font/capriola"
-                    android:padding="5dp" />
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="80dp"
+                    android:paddingBottom="20dp"
+                    android:text="@string/check_update" />
 
                 <Button
                     android:id="@+id/update_app"
@@ -38,6 +40,33 @@
                     android:padding="5dp"
                     android:text="@string/update"
                     android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/capriola"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="100dp"
+                    android:paddingBottom="20dp"
+                    android:text="Use dark theme" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/ask_dark_theme"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:fontFamily="@font/capriola"
+                    android:paddingStart="30dp"
+                    android:paddingTop="20dp"
+                    android:paddingEnd="5dp"
+                    android:paddingBottom="20dp" />
             </LinearLayout>
 
             <LinearLayout
@@ -161,6 +190,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/capriola"
                         android:paddingStart="30dp"
+                        android:elevation="5dp"
                         android:text="@string/scm_description" />
                 </LinearLayout>
             </LinearLayout>

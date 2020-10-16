@@ -203,7 +203,7 @@ public class Home extends AppCompatActivity {
             String enc_email = data.getStringExtra(Add.EXTRA_EMAIL);
             ViyCred viyCred = new ViyCred(PROVIDER, providerName, enc_email, enc_passwd);
             Log.d(TAG, "Provider: " + PROVIDER + " EMAIL: " + enc_email + " ENC_DATA: " + enc_passwd);
-            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences(PROVIDER, Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             PasswordViewModel passwordViewModel = new ViewModelProvider(this).get(PasswordViewModel.class);
             passwordViewModel.insert(viyCred);
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();

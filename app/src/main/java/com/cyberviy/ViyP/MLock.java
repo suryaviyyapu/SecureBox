@@ -44,13 +44,11 @@ public class MLock extends AppCompatActivity {
     // Gradient on statusbar
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public static void setStatusBarGradiant(Activity activity) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = activity.getWindow();
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            window.setStatusBarColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
-            //window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
-            //window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
-        }
+        Window window = activity.getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(ContextCompat.getColor(activity, R.color.colorPrimaryDark));
+        //window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+        //window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
     }
 
     @Override
@@ -58,7 +56,6 @@ public class MLock extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_mlock);
-
         bioAuth();
 
         mlock_tv_greet = findViewById(R.id.mlock_l_tv_greet);

@@ -21,7 +21,7 @@ import androidx.security.crypto.MasterKey;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 
-public class ChangePassActivity extends AppCompatActivity {
+public class ChangePassword extends AppCompatActivity {
     public static final String EXTRA_TYPE_PASS = "com.cyberviy.ViyP.EXTRA_TYPE_PASS";
     final String PREFS_NAME = "appEssentials";
     String TYPE_PASS_1 = "PIN";

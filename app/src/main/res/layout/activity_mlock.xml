@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_fade"
+    android:background="?android:attr/colorBackground"
     tools:context=".MLock">
 
     <LinearLayout
@@ -59,7 +59,7 @@
                 app:keypadDeleteButtonSize="16dp"
                 app:keypadHorizontalSpacing="20dp"
                 app:keypadShowDeleteButton="true"
-                app:keypadTextColor="#000"
+                app:keypadTextColor="?android:attr/textColorPrimary"
                 app:keypadTextSize="16dp"
                 app:keypadVerticalSpacing="16dp"
                 android:layout_margin="15dp"

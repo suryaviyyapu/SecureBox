@@ -45,7 +45,7 @@ public class Help extends AppCompatActivity {
     }
 
     public void whats_new(View view) {
-        startActivity(new Intent(this, AboutActivity.class));
+        startActivity(new Intent(this, About.class));
     }
 
     @Override

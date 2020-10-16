@@ -16,6 +16,7 @@
             android:fontFamily="@font/capriola"
             android:gravity="center"
             android:text="Provider"
+            android:textColor="?android:attr/textColorPrimary"
             android:textSize="@dimen/text_medium_size" />
 
         <Spinner
@@ -35,8 +36,6 @@
         android:hint="Email"
         android:inputType="textEmailAddress"
         android:maxLength="32"
-        android:shadowColor="@color/extra_color"
-        android:textColorHint="#000"
         android:textStyle="normal">
 
         <requestFocus />
@@ -51,8 +50,6 @@
         android:hint="Password"
         android:inputType="textPassword"
         android:maxLines="1"
-        android:shadowColor="@color/extra_color"
-        android:textColorHint="#000"
         android:textStyle="normal" />
 
     <CheckBox

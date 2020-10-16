@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,19 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChangePassActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ViewCreds" />
+        <activity android:name=".ChangePassword" />
+        <activity android:name=".About" />
         <activity android:name=".Authorize" />
-        <!--        <activity-->
-        <!--            android:name=".Add"-->
-        <!--            android:label="Add new data"-->
-        <!--            android:parentActivityName=".Home"-->
-        <!--            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />-->
-        <!--        <activity-->
-        <!--            android:name=".Modify"-->
-        <!--            android:label="Modify password"-->
-        <!--            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />-->
         <activity
             android:name=".Add"
             android:label="Add data" />
@@ -54,6 +44,7 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
+
         <activity
             android:name=".MLock"
             android:theme="@style/AppTheme.NoActionBar" />

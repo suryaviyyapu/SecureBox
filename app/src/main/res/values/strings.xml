@@ -57,6 +57,6 @@
     <string name="Github">Github Link</string>
     <string name="data_restore">Restore data</string>
     <string name="check_update">Check for updates</string>
-    <string name="update">Update app</string>
+    <string name="update">Update</string>
     <!--END-->
 </resources>
