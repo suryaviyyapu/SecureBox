@@ -82,7 +82,7 @@ public class Settings extends AppCompatActivity {
         }
 
         change_password = findViewById(R.id.change_master_password);
-        export_data = findViewById(R.id.export_data);
+        //export_data = findViewById(R.id.export_data);
         delete_data = findViewById(R.id.delete_all_data);
         about_app = findViewById(R.id.about_app);
         updateApp = findViewById(R.id.update_app);
@@ -91,7 +91,7 @@ public class Settings extends AppCompatActivity {
         final SwitchMaterial secureCoreModeSwitch = findViewById(R.id.secure_core_mode);
         final SwitchMaterial dark_theme = findViewById(R.id.ask_dark_theme);
 
-        secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, true);
+        secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, false);
         final boolean askPasswordLaunchState = sharedPreferences.getBoolean(PREF_KEY, true);
         secureCoreModeSwitch.setChecked(secureCodeModeState);
         askPasswordLaunchSwitch.setChecked(askPasswordLaunchState);

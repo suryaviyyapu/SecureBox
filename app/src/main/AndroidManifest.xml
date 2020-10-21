@@ -44,7 +44,6 @@
         <activity
             android:name=".Settings"
             android:label="@string/title_activity_settings" />
-
         <activity
             android:name=".MLock"
             android:theme="@style/AppTheme.NoActionBar" />

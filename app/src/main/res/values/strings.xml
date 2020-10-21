@@ -36,11 +36,11 @@
     <!-- Security Preferences -->
     <string name="ask_password_before_launch">Ask password before launch</string>
     <string name="change_master_password">Change master password</string>
-    <string name="scm_description">Disables copy to clipboard and screenshots in the app</string>
+    <string name="scm_description">Disables updates, copy to clipboard and screenshots in the app</string>
 
     <!-- Data Preferences -->
     <string name="data_export">Export data</string>
-    <string name="delete_data">Delete all</string>
+    <string name="delete_data">Erase all passwords</string>
 
     <!--About Preferences-->
     <string name="about_app">About app</string>

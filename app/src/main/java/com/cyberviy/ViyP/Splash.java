@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -52,6 +53,8 @@ public class Splash extends AppCompatActivity {
         }
         setStatusBarGradiant(this);
         setContentView(R.layout.activity_splash);
+        TextView password_manager = findViewById(R.id.password_manager);
+        password_manager.setText("Password Manager");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

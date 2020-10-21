@@ -16,11 +16,12 @@ public class About extends AppCompatActivity {
 
     String version;
     String[] whatsnew = {
-            "Improved UI",
+            "Dark mode",
             "Fingerprint Auth",
             "Secure core mode v1.SCM",
             "Random Password Generator v1.RPG",
             "Add passwords from RPG using copy",
+            "Improved UI",
             "Minor Bug fixes and Improvements",
     };
 

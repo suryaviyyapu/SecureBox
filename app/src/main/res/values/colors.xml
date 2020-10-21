@@ -11,7 +11,6 @@
     <!--    <color name="icons">#FFFFFF</color>-->
     <!--Theme 2-->
 
-    <!--    <color name="colorPrimary">#457b9d</color>-->
     <color name="colorPrimary">#264653</color>
     <color name="colorPrimaryDark">#262630</color>
     <color name="colorAccent">#FDD036</color>
@@ -21,14 +20,6 @@
     <color name="white_fade">#f5f5f5</color>
     <color name="icons">#FFFFFF</color>
 
-    <!--Theme 3-->
-    <!--    <color name="colorPrimary">#3B8AC4</color>-->
-    <!--    <color name="colorPrimaryDark">#345DA7</color>-->
-    <!--    <color name="colorAccent">#EFDBCB</color>-->
-    <!--    <color name="buttonColor">#4BB4DE</color>-->
-    <!--    <color name="icons">#FFFFFF</color>-->
-    <!--      <color name="primary_text">#FFFFFF</color>-->
-    <!--      <color name="secondary_text">#F2F2F2F2</color>-->
 
     <!-- Screens background color-->
     <color name="bg_screen1">#f64c73</color>
