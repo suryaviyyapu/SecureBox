@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -58,5 +59,9 @@ public class Help extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void support(View view) {
+        Toast.makeText(getApplicationContext(), "Drop a message at https://t.me/z3rod0t", Toast.LENGTH_LONG).show();
     }
 }

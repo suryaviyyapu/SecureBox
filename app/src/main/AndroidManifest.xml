@@ -26,7 +26,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".ChangePassword" />
-        <activity android:name=".About" />
+        <activity
+            android:name=".About"
+            android:label="Whats new" />
         <activity android:name=".Authorize" />
         <activity
             android:name=".Add"

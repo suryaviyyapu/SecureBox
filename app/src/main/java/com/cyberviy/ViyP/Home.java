@@ -122,6 +122,28 @@ public class Home extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        if (sharedPreferences.getBoolean("FIRSTNOTICE", true)) {
+            //AlertDialog START
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            // Setting Alert Dialog Title
+            alertDialogBuilder.setTitle("Notice");
+            // Setting Alert Dialog Message
+            alertDialogBuilder.setMessage("Viyp is still in development. Please share your feedback in github or to the developer if you face any issues");
+            //Positive button
+            alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("FIRSTNOTICE", false).apply();
+                }
+            });
+            //Negative button
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+            //AlertDialog END
+        }
     }
 
     @Override

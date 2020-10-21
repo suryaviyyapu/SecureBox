@@ -19,11 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Changelog"
+        android:textStyle="bold"
+        android:paddingTop="10dp"
         android:layout_margin="5dp"
-        android:textSize="@dimen/text_medium_size" />
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/listView"
+        android:paddingStart="8dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:listitem="@layout/list_whats_new" />
