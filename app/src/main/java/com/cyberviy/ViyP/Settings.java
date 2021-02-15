@@ -19,11 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
-
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
 import java.io.IOException;
@@ -43,10 +39,7 @@ public class Settings extends AppCompatActivity {
     String TYPE_PASS_2 = "PASSWORD";
     MasterKey masterKey = null;
     String PACKAGE_NAME;
-    String repo = "suryaviyyapu";
-    String pack = "ViyP";
     TextView change_password, export_data, delete_data, about_app;
-    Button updateApp;
     ProgressBar progressBar;
     boolean secureCodeModeState;
     private int STORAGE_PERMISSION_CODE = 101;
@@ -85,7 +78,6 @@ public class Settings extends AppCompatActivity {
         //export_data = findViewById(R.id.export_data);
         delete_data = findViewById(R.id.delete_all_data);
         about_app = findViewById(R.id.about_app);
-        updateApp = findViewById(R.id.update_app);
         progressBar = findViewById(R.id.progress_bar);
         final SwitchMaterial askPasswordLaunchSwitch = findViewById(R.id.ask_password_launch);
         final SwitchMaterial secureCoreModeSwitch = findViewById(R.id.secure_core_mode);
@@ -101,21 +93,6 @@ public class Settings extends AppCompatActivity {
         if (onDarkTheme) {
             dark_theme.setChecked(onDarkTheme);
         }
-        updateApp.setEnabled(true);
-
-        //Checking for updates
-        updateApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!secureCodeModeState) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    updateApp();
-                    progressBar.setVisibility(View.GONE);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Cannot check for updates. SCM enabled", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
 
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         askPasswordLaunchSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -182,16 +159,6 @@ public class Settings extends AppCompatActivity {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
             Toast.makeText(getApplicationContext(), "Secure code mode is inactive", Toast.LENGTH_LONG).show();
         }
-    }
-
-    public void updateApp() {
-        AppUpdater appUpdater = new AppUpdater(this)
-                .showEvery(5)
-                .setDisplay(Display.NOTIFICATION)
-                .setDisplay(Display.DIALOG)
-                .setUpdateFrom(UpdateFrom.GITHUB)
-                .setGitHubUserAndRepo(repo, pack);
-        appUpdater.start();
     }
 
     private void askPassword(boolean state) {

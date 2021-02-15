@@ -14,33 +14,34 @@
             android:orientation="vertical"
             android:padding="15dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+<!--            todo DELETE THIS-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/capriola"
-                    android:paddingStart="30dp"
-                    android:paddingTop="30dp"
-                    android:paddingEnd="80dp"
-                    android:paddingBottom="20dp"
-                    android:text="@string/check_update" />
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:fontFamily="@font/capriola"-->
+<!--                    android:paddingStart="30dp"-->
+<!--                    android:paddingTop="30dp"-->
+<!--                    android:paddingEnd="80dp"-->
+<!--                    android:paddingBottom="20dp"-->
+<!--                    android:text="@string/check_update" />-->
 
-                <Button
-                    android:id="@+id/update_app"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="2dp"
-                    android:background="@drawable/btn_shape_capsule_safe"
-                    android:enabled="false"
-                    android:fontFamily="@font/capriola"
-                    android:padding="5dp"
-                    android:text="@string/update"
-                    android:textColor="@color/white" />
-            </LinearLayout>
+<!--                <Button-->
+<!--                    android:id="@+id/update_app"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_margin="2dp"-->
+<!--                    android:background="@drawable/btn_shape_capsule_safe"-->
+<!--                    android:enabled="false"-->
+<!--                    android:fontFamily="@font/capriola"-->
+<!--                    android:padding="5dp"-->
+<!--                    android:text="@string/update"-->
+<!--                    android:textColor="@color/white" />-->
+<!--            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="match_parent"
