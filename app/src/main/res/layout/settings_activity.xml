@@ -194,9 +194,8 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/capriola"
-                        android:paddingStart="30dp"
-                        android:elevation="5dp"
+                        android:textSize="16sp"
+                        android:layout_marginStart="30dp"
                         android:text="@string/scm_description" />
                 </LinearLayout>
             </LinearLayout>

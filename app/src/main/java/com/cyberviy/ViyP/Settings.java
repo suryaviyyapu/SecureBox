@@ -112,7 +112,7 @@ public class Settings extends AppCompatActivity {
                     updateApp();
                     progressBar.setVisibility(View.GONE);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Secure code mode enabled cannot check for updates", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Cannot check for updates. SCM enabled", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -174,7 +174,7 @@ public class Settings extends AppCompatActivity {
 
             editor.putBoolean(PREF_KEY_SCM_COPY, false).apply();
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-            Toast.makeText(getApplicationContext(), "Secure code mode is active. Restart to apply changes", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Success. Restart app to apply changes", Toast.LENGTH_LONG).show();
         } else {
             //to do true
             //set copy to clipboard and screenshot ability
@@ -198,11 +198,11 @@ public class Settings extends AppCompatActivity {
         if (state) {
             //to do False
             //remove copy to clipboard and screenshot ability
-            Toast.makeText(getApplicationContext(), "Password: ON", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Password: ON", Toast.LENGTH_SHORT).show();
         } else {
             //to do true
             //set copy to clipboard and screenshot ability
-            Toast.makeText(getApplicationContext(), "Password: OFF", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Password: OFF", Toast.LENGTH_SHORT).show();
         }
     }
 

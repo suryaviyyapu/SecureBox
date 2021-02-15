@@ -229,8 +229,6 @@ public class Home extends AppCompatActivity {
             PasswordViewModel passwordViewModel = new ViewModelProvider(this).get(PasswordViewModel.class);
             passwordViewModel.insert(viyCred);
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Not Saved", Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

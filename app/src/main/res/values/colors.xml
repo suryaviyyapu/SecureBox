@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="yellow">#FDD036</color>
     <color name="jd_red">#CB0000</color>
     <color name="jd_light">#E5001F</color>
     <!--    Theme 1-->
@@ -14,11 +13,7 @@
     <color name="colorPrimary">#264653</color>
     <color name="colorPrimaryDark">#262630</color>
     <color name="colorAccent">#FDD036</color>
-    <color name="primary_text">#FFFFFF</color>
-    <color name="extra_color">#00CC99</color>
     <color name="bg_color_splash">#242430</color>
-    <color name="white_fade">#f5f5f5</color>
-    <color name="icons">#FFFFFF</color>
 
 
     <!-- Screens background color-->

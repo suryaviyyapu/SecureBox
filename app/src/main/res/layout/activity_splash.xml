@@ -21,7 +21,6 @@
         android:id="@+id/password_manager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/capriola"
         android:textColor="@color/white"
         android:textSize="@dimen/text_medium_size"
         android:paddingTop="100dp"

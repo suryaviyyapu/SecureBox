@@ -28,7 +28,7 @@
         <activity android:name=".ChangePassword" />
         <activity
             android:name=".About"
-            android:label="Whats new" />
+            android:label="Changelog" />
         <activity android:name=".Authorize" />
         <activity
             android:name=".Add"
