@@ -62,6 +62,10 @@ public class Help extends AppCompatActivity {
     }
 
     public void support(View view) {
-        Toast.makeText(getApplicationContext(), "Drop a message at https://t.me/z3rod0t", Toast.LENGTH_LONG).show();
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(String.format("https://t.me/%s", "z3rod0t")));
+        startActivity(intent);
     }
 }
