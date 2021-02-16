@@ -32,6 +32,9 @@ import androidx.security.crypto.MasterKey;
 
 import com.cyberviy.ViyP.models.ViyCred;
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
+import com.github.javiersantos.appupdater.AppUpdater;
+import com.github.javiersantos.appupdater.enums.Display;
+import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.navigation.NavigationView;
 
 import java.io.IOException;
@@ -51,12 +54,15 @@ public class Home extends AppCompatActivity {
     private static final String PROVIDER = "mail";
     final String PREFS_NAME = "appEssentials";
     SharedPreferences sharedPreferences;
+    String repo = "suryaviyyapu";
+    String pack = "ViyP";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
     MasterKey masterKey = null;
     String PASSWORD = "";
     AlertDialog.Builder builder;
+    boolean secureCodeModeState;
     private AppBarConfiguration mAppBarConfiguration;
-    //TODO Generate password from add activity
+    AppUpdater appUpdater;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,8 +96,9 @@ public class Home extends AppCompatActivity {
         } catch (GeneralSecurityException | IOException e) {
             e.printStackTrace();
         }
+        secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, false);
 
-        if (sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, false)) {
+        if (secureCodeModeState) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
         }
 
@@ -116,12 +123,48 @@ public class Home extends AppCompatActivity {
                 nav_refresh();
             }
         });
-
+//        App updater
+        appUpdater = new AppUpdater(this)
+                .showEvery(3)
+                .setDisplay(Display.NOTIFICATION)
+                .setDisplay(Display.DIALOG)
+                .setUpdateFrom(UpdateFrom.GITHUB)
+                .setGitHubUserAndRepo(repo, pack)
+                .setTitleOnUpdateAvailable("Update available")
+                .setContentOnUpdateAvailable("Get the latest version available for better security and fixes!")
+                .setButtonUpdate("Update now?")
+                .setButtonDismiss("Maybe later")
+                .setButtonDoNotShowAgain("Huh, not interested");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
+        if (sharedPreferences.getBoolean("FIRSTNOTICE", true)) {
+            //AlertDialog START
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            // Setting Alert Dialog Title
+            alertDialogBuilder.setTitle("Notice");
+            // Setting Alert Dialog Message
+            alertDialogBuilder.setMessage("Viyp is still in beta you may face some issues.");
+            //Positive button
+            alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+
+                @Override
+                public void onClick(DialogInterface arg0, int arg1) {
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putBoolean("FIRSTNOTICE", false).apply();
+                }
+            });
+            //Negative button
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
+            //AlertDialog END
+            if (!secureCodeModeState)
+                Log.d("Update", String.valueOf(secureCodeModeState));
+                appUpdater.start();
+        }
     }
 
     @Override
@@ -203,12 +246,10 @@ public class Home extends AppCompatActivity {
             String enc_email = data.getStringExtra(Add.EXTRA_EMAIL);
             ViyCred viyCred = new ViyCred(PROVIDER, providerName, enc_email, enc_passwd);
             Log.d(TAG, "Provider: " + PROVIDER + " EMAIL: " + enc_email + " ENC_DATA: " + enc_passwd);
-            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences(PROVIDER, Context.MODE_PRIVATE);
+            SharedPreferences sharedPreferences = this.getApplicationContext().getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
             PasswordViewModel passwordViewModel = new ViewModelProvider(this).get(PasswordViewModel.class);
             passwordViewModel.insert(viyCred);
             Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
-        } else {
-            Toast.makeText(getApplicationContext(), "Not Saved", Toast.LENGTH_SHORT).show();
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

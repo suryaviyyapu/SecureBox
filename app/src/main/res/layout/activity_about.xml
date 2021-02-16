@@ -4,13 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AboutActivity">
+    tools:context=".About">
 
     <TextView
         android:id="@+id/version"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Version"
+        android:layout_gravity="center"
         android:layout_margin="5dp"
         android:textSize="@dimen/text_hi_size" />
 
@@ -18,11 +19,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Changelog"
+        android:paddingTop="10dp"
         android:layout_margin="5dp"
-        android:textSize="@dimen/text_medium_size" />
+        android:layout_marginStart="20dp"
+        android:textSize="20sp" />
 
     <ListView
         android:id="@+id/listView"
+        android:layout_margin="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:listitem="@layout/list_whats_new" />

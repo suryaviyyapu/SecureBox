@@ -16,8 +16,8 @@
 
     <string name="slide_1_desc">The easiest way to store your passwords for every website you visit!</string>
 
-    <string name="slide_2_title">Fully Offline</string>
-    <string name="slide_2_desc">No gambling with your data. This app doesn\'t need Internet.</string>
+    <string name="slide_2_title">Offline</string>
+    <string name="slide_2_desc">Your data is stored only on your device.</string>
 
     <string name="slide_3_title">Strong Encryption</string>
     <string name="slide_3_desc">We use the strongest encryption available to secure your data!</string>
@@ -36,11 +36,10 @@
     <!-- Security Preferences -->
     <string name="ask_password_before_launch">Ask password before launch</string>
     <string name="change_master_password">Change master password</string>
-    <string name="scm_description">Disables copy to clipboard and screenshots in the app</string>
+    <string name="scm_description">Disables updates, copy to clipboard and screenshots in the app</string>
 
     <!-- Data Preferences -->
-    <string name="data_export">Export data</string>
-    <string name="delete_data">Delete all</string>
+    <string name="delete_data">Erase all passwords</string>
 
     <!--About Preferences-->
     <string name="about_app">About app</string>
@@ -55,8 +54,9 @@
     <string name="empty_list_text">No data found</string>
     <string name="version">Version 0.1.2</string>
     <string name="Github">Github Link</string>
-    <string name="data_restore">Restore data</string>
     <string name="check_update">Check for updates</string>
-    <string name="update">Update app</string>
+    <string name="update">Update</string>
+    <string name="data_restore">Restore data</string>
+    <string name="data_export">Export data</string>
     <!--END-->
 </resources>

@@ -22,6 +22,7 @@ public abstract class ViyCredDB extends RoomDatabase {
         if (instance == null) {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                     ViyCredDB.class, "CredsDB")
+                    .setJournalMode(JournalMode.TRUNCATE)
                     .fallbackToDestructiveMigration()
                     .addCallback(roomCallback)
                     .build();
@@ -46,9 +47,7 @@ public abstract class ViyCredDB extends RoomDatabase {
 
         @Override
         protected Void doInBackground(Void... voids) {
-//            viyCredDao.insert(new ViyCred("mails", "asd@gmail.com", "Description 1"));
-//            viyCredDao.insert(new ViyCred("social", "asd@gmail.com", "Description 2"));
-//            viyCredDao.insert(new ViyCred("wifi", "asd@gmail.com", "Description 3"));
+            // Do anything
             return null;
         }
     }

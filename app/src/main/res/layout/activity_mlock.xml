@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white_fade"
+    android:background="?android:attr/colorBackground"
     tools:context=".MLock">
 
     <LinearLayout
@@ -23,10 +23,9 @@
             android:id="@+id/mlock_l_tv_greet"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/capriola"
             android:text="@string/mlock_st_master_password_greet"
             android:textSize="15sp"
-            android:layout_margin="15dp"
+            android:layout_margin="10dp"
             android:layout_gravity="center" />
 
         <com.andrognito.pinlockview.IndicatorDots
@@ -59,7 +58,7 @@
                 app:keypadDeleteButtonSize="16dp"
                 app:keypadHorizontalSpacing="20dp"
                 app:keypadShowDeleteButton="true"
-                app:keypadTextColor="#000"
+                app:keypadTextColor="?android:attr/textColorPrimary"
                 app:keypadTextSize="16dp"
                 app:keypadVerticalSpacing="16dp"
                 android:layout_margin="15dp"

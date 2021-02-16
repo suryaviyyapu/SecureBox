@@ -11,16 +11,15 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class AboutActivity extends AppCompatActivity {
+public class About extends AppCompatActivity {
     TextView ver;
 
     String version;
     String[] whatsnew = {
-            "Improved UI",
+            "Dark mode",
             "Fingerprint Auth",
-            "Secure core mode v1.SCM",
-            "Random Password Generator v1.RPG",
-            "Add passwords from RPG using copy",
+            "Backup and restore credentials to storage",
+            "Minor UI changes",
             "Minor Bug fixes and Improvements",
     };
 

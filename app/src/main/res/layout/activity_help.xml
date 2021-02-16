@@ -102,6 +102,7 @@
             android:layout_height="@dimen/default_button_size"
             android:layout_weight="1"
             android:fontFamily="@font/capriola"
+            android:onClick="support"
             android:gravity="center"
             android:text="Help and support" />
     </LinearLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,7 +46,7 @@ public class Help extends AppCompatActivity {
     }
 
     public void whats_new(View view) {
-        startActivity(new Intent(this, AboutActivity.class));
+        startActivity(new Intent(this, About.class));
     }
 
     @Override
@@ -58,5 +59,13 @@ public class Help extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    public void support(View view) {
+        Intent intent = new Intent();
+        intent.setAction(Intent.ACTION_VIEW);
+        intent.addCategory(Intent.CATEGORY_BROWSABLE);
+        intent.setData(Uri.parse(String.format("https://t.me/%s", "z3rod0t")));
+        startActivity(intent);
     }
 }

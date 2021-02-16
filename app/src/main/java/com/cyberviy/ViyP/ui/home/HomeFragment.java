@@ -22,7 +22,7 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
     private RecyclerViewAdapter adapter;
-    String PREF_NAME = "Settings";
+    String PREF_NAME = "appEssentials";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
     SharedPreferences sharedPreferences;
 

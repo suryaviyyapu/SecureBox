@@ -1,45 +1,41 @@
 package com.cyberviy.ViyP;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
-
+import com.cyberviy.ViyP.room.ViyCredDB;
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
-import com.github.javiersantos.appupdater.AppUpdater;
-import com.github.javiersantos.appupdater.enums.Display;
-import com.github.javiersantos.appupdater.enums.UpdateFrom;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import ir.androidexception.roomdatabasebackupandrestore.Backup;
+import ir.androidexception.roomdatabasebackupandrestore.OnWorkFinishListener;
+import ir.androidexception.roomdatabasebackupandrestore.Restore;
 
 public class Settings extends AppCompatActivity {
-    private static final String DATABASE_NAME = "CredsDB";
-    private static final int MAXIMUM_DATABASE_FILE = 2;
-    private static final String FILE_NAME = "Viyp-Backup";
-    private static final String BACKUP_RESTORE_ROLLBACK_FILE_NAME = "CredsDB";
     final String PREFS_NAME = "appEssentials";
     SharedPreferences sharedPreferences = null;
+    SharedPreferences UIPref;
     String PREF_KEY = "MASTER_PASSWORD";
+    String PREF_DARK = "DARK_THEME";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
     String PREF_KEY_SCM_COPY = "SCM_COPY";
     String PREF_KEY_SCM_SCREENSHOTS = "SCM_SCREENSHOTS";
@@ -48,13 +44,9 @@ public class Settings extends AppCompatActivity {
     String TYPE_PASS_2 = "PASSWORD";
     MasterKey masterKey = null;
     String PACKAGE_NAME;
-    String repo = "suryaviyyapu";
-    String pack = "ViyP";
-    TextView change_password, export_data, delete_data, about_app;
-    Button updateApp;
+    TextView change_password, delete_data, about_app;
     ProgressBar progressBar;
     boolean secureCodeModeState;
-    private int STORAGE_PERMISSION_CODE = 101;
 
 
 
@@ -87,35 +79,23 @@ public class Settings extends AppCompatActivity {
         }
 
         change_password = findViewById(R.id.change_master_password);
-        export_data = findViewById(R.id.export_data);
         delete_data = findViewById(R.id.delete_all_data);
         about_app = findViewById(R.id.about_app);
-        updateApp = findViewById(R.id.update_app);
         progressBar = findViewById(R.id.progress_bar);
         final SwitchMaterial askPasswordLaunchSwitch = findViewById(R.id.ask_password_launch);
         final SwitchMaterial secureCoreModeSwitch = findViewById(R.id.secure_core_mode);
+        final SwitchMaterial dark_theme = findViewById(R.id.ask_dark_theme);
 
-        secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, true);
+        secureCodeModeState = sharedPreferences.getBoolean(PREF_KEY_SECURE_CORE_MODE, false);
         final boolean askPasswordLaunchState = sharedPreferences.getBoolean(PREF_KEY, true);
-        final boolean status = sharedPreferences.getBoolean(NO_DATA, false);
-
         secureCoreModeSwitch.setChecked(secureCodeModeState);
         askPasswordLaunchSwitch.setChecked(askPasswordLaunchState);
-        updateApp.setEnabled(true);
-
-        //Checking for updates
-        updateApp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!secureCodeModeState) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    updateApp();
-                    progressBar.setVisibility(View.GONE);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Secure code mode enabled cannot check for updates", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        //Set theme mode
+        UIPref = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
+        boolean onDarkTheme = UIPref.getBoolean(PREF_DARK, false);
+        if (onDarkTheme) {
+            dark_theme.setChecked(onDarkTheme);
+        }
 
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         askPasswordLaunchSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -129,6 +109,25 @@ public class Settings extends AppCompatActivity {
                     // remove password
                     askPassword(false);
                     editor.putBoolean(PREF_KEY, false).apply();
+                }
+            }
+        });
+        final SharedPreferences.Editor UIEditor = UIPref.edit();
+        dark_theme.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // Enable Dark theme
+                    AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_YES
+                    );
+                    UIEditor.putBoolean(PREF_DARK, true).apply();
+                } else {
+                    // Disable Dark theme
+                    AppCompatDelegate.setDefaultNightMode(
+                            AppCompatDelegate.MODE_NIGHT_NO
+                    );
+                    UIEditor.putBoolean(PREF_DARK, false).apply();
                 }
             }
         });
@@ -155,7 +154,7 @@ public class Settings extends AppCompatActivity {
 
             editor.putBoolean(PREF_KEY_SCM_COPY, false).apply();
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-            Toast.makeText(getApplicationContext(), "Secure code mode is active. Restart to apply changes", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Success. Restart app to apply changes", Toast.LENGTH_LONG).show();
         } else {
             //to do true
             //set copy to clipboard and screenshot ability
@@ -165,25 +164,15 @@ public class Settings extends AppCompatActivity {
         }
     }
 
-    public void updateApp() {
-        AppUpdater appUpdater = new AppUpdater(this)
-                .showEvery(5)
-                .setDisplay(Display.NOTIFICATION)
-                .setDisplay(Display.DIALOG)
-                .setUpdateFrom(UpdateFrom.GITHUB)
-                .setGitHubUserAndRepo(repo, pack);
-        appUpdater.start();
-    }
-
     private void askPassword(boolean state) {
         if (state) {
             //to do False
             //remove copy to clipboard and screenshot ability
-            Toast.makeText(getApplicationContext(), "Password: ON", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Password: ON", Toast.LENGTH_SHORT).show();
         } else {
             //to do true
             //set copy to clipboard and screenshot ability
-            Toast.makeText(getApplicationContext(), "Password: OFF", Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), "Password: OFF", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -196,76 +185,73 @@ public class Settings extends AppCompatActivity {
     }
 
     public void changePasswordToPIN(View view) {
-        Intent intent = new Intent(getApplicationContext(), ChangePassActivity.class);
-        intent.putExtra(ChangePassActivity.EXTRA_TYPE_PASS, TYPE_PASS_1);
+        Intent intent = new Intent(getApplicationContext(), ChangePassword.class);
+        intent.putExtra(ChangePassword.EXTRA_TYPE_PASS, TYPE_PASS_1);
         startActivity(intent);
     }
 
     public void changePasswordToPassword(View view) {
-        Intent intent = new Intent(getApplicationContext(), ChangePassActivity.class);
-        intent.putExtra(ChangePassActivity.EXTRA_TYPE_PASS, TYPE_PASS_2);
+        Intent intent = new Intent(getApplicationContext(), ChangePassword.class);
+        intent.putExtra(ChangePassword.EXTRA_TYPE_PASS, TYPE_PASS_2);
         startActivity(intent);
     }
 
-    // Function to check and request permission
-    public void checkPermission(String permission, int requestCode)
-    {
-
-        // Checking if permission is not granted
-        if (ContextCompat.checkSelfPermission(
-                this,
-                permission)
-                == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat
-                    .requestPermissions(
-                            this,
-                            new String[] { permission },
-                            requestCode);
-        }
-    }
-    // This function is called when user accept or decline the permission.
-// Request Code is used to check which permission called this function.
-// This request code is provided when user is prompt for permission.
-
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NonNull String[] permissions,
-                                           @NonNull int[] grantResults)
-    {
-        super
-                .onRequestPermissionsResult(requestCode,
-                        permissions,
-                        grantResults);
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
-        if (requestCode == STORAGE_PERMISSION_CODE) {
-            if (grantResults.length > 0
-                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(this,
-                        "Storage Permission Granted",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            } else {
-                Toast.makeText(this,
-                        "Storage Permission Denied",
-                        Toast.LENGTH_SHORT)
-                        .show();
-            }
+        }else if(grantResults[0] == PackageManager.PERMISSION_DENIED){
+            Toast.makeText(getApplicationContext(), "Permission required", Toast.LENGTH_LONG).show();
         }
     }
 
-
-    public void getItemsForExport() {
-
+    public boolean check_storage_perms(Activity activity) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }else {
+            return true;
+        }
     }
 
-    public void exportData(View view) {
-//        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
-        Toast.makeText(getApplicationContext(), "Export data", Toast.LENGTH_SHORT).show();
+    public void export_data(View view) {
+        check_storage_perms(this);
+        new Backup.Init()
+                .database(ViyCredDB.getInstance(this))
+                .path("storage/emulated/0/")
+                .fileName("viyp_BKP.txt")
+//                .secretKey("your-secret-key") //optional
+                .onWorkFinishListener(new OnWorkFinishListener() {
+                    @Override
+                    public void onFinished(boolean success, String message) {
+                        // do anything
+                        if(message.equals("success")){
+                            Toast.makeText(getApplicationContext(), "Restart app to sync your credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .execute();
     }
-
-    public void restoreData(View view) throws IOException {
+        public void restore_data(View view){
+        check_storage_perms(this);
         // Restore
-        Toast.makeText(getApplicationContext(), "Restore data successful", Toast.LENGTH_SHORT).show();
+            new Restore.Init()
+                    .database(ViyCredDB.getInstance(this))
+                    .backupFilePath("storage/emulated/0/viyp_BKP.txt")
+//                    .secretKey("your-secret-key") // if your backup file is encrypted, this parameter is required
+                    .onWorkFinishListener(new OnWorkFinishListener() {
+                        @Override
+                        public void onFinished(boolean success, String message) {
+                            // do anything
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .execute();
     }
 
 
@@ -306,7 +292,7 @@ public class Settings extends AppCompatActivity {
     }
 
     public void aboutApp(View view) {
-        startActivity(new Intent(this, AboutActivity.class));
+        startActivity(new Intent(this, About.class));
     }
 
     @Override
@@ -319,11 +305,5 @@ public class Settings extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        this.finish();
     }
 }

@@ -6,6 +6,7 @@
         android:name="android.hardware.fingerprint"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.USE_BIOMETRIC" />
 
     <application
@@ -17,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".SplashActivity"
+            android:name=".Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,19 +26,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChangePassActivity" />
-        <activity android:name=".AboutActivity" />
-        <activity android:name=".ViewCreds" />
+        <activity android:name=".ChangePassword" />
+        <activity
+            android:name=".About"
+            android:label="Changelog" />
         <activity android:name=".Authorize" />
-        <!--        <activity-->
-        <!--            android:name=".Add"-->
-        <!--            android:label="Add new data"-->
-        <!--            android:parentActivityName=".Home"-->
-        <!--            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />-->
-        <!--        <activity-->
-        <!--            android:name=".Modify"-->
-        <!--            android:label="Modify password"-->
-        <!--            android:theme="@android:style/Theme.DeviceDefault.Light.Dialog" />-->
         <activity
             android:name=".Add"
             android:label="Add data" />
