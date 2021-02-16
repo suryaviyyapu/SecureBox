@@ -1,29 +1,34 @@
 package com.cyberviy.ViyP;
 
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.content.ContextCompat;
 import androidx.security.crypto.EncryptedSharedPreferences;
 import androidx.security.crypto.MasterKey;
+import com.cyberviy.ViyP.room.ViyCredDB;
 import com.cyberviy.ViyP.ui.password.PasswordViewModel;
 import com.google.android.material.switchmaterial.SwitchMaterial;
-
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import ir.androidexception.roomdatabasebackupandrestore.Backup;
+import ir.androidexception.roomdatabasebackupandrestore.OnWorkFinishListener;
+import ir.androidexception.roomdatabasebackupandrestore.Restore;
 
 public class Settings extends AppCompatActivity {
     final String PREFS_NAME = "appEssentials";
@@ -39,10 +44,9 @@ public class Settings extends AppCompatActivity {
     String TYPE_PASS_2 = "PASSWORD";
     MasterKey masterKey = null;
     String PACKAGE_NAME;
-    TextView change_password, export_data, delete_data, about_app;
+    TextView change_password, delete_data, about_app;
     ProgressBar progressBar;
     boolean secureCodeModeState;
-    private int STORAGE_PERMISSION_CODE = 101;
 
 
 
@@ -75,7 +79,6 @@ public class Settings extends AppCompatActivity {
         }
 
         change_password = findViewById(R.id.change_master_password);
-        //export_data = findViewById(R.id.export_data);
         delete_data = findViewById(R.id.delete_all_data);
         about_app = findViewById(R.id.about_app);
         progressBar = findViewById(R.id.progress_bar);
@@ -193,18 +196,62 @@ public class Settings extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void getItemsForExport() {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
 
+        }else if(grantResults[0] == PackageManager.PERMISSION_DENIED){
+            Toast.makeText(getApplicationContext(), "Permission required", Toast.LENGTH_LONG).show();
+        }
     }
 
-    public void exportData(View view) {
-//        checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
-        Toast.makeText(getApplicationContext(), "Export data", Toast.LENGTH_SHORT).show();
+    public boolean check_storage_perms(Activity activity) {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+            if(ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED){
+                return true;
+            } else {
+                ActivityCompat.requestPermissions(activity, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+                return false;
+            }
+        }else {
+            return true;
+        }
     }
 
-    public void restoreData(View view) throws IOException {
+    public void export_data(View view) {
+        check_storage_perms(this);
+        new Backup.Init()
+                .database(ViyCredDB.getInstance(this))
+                .path("storage/emulated/0/")
+                .fileName("viyp_BKP.txt")
+//                .secretKey("your-secret-key") //optional
+                .onWorkFinishListener(new OnWorkFinishListener() {
+                    @Override
+                    public void onFinished(boolean success, String message) {
+                        // do anything
+                        if(message.equals("success")){
+                            Toast.makeText(getApplicationContext(), "Restart app to sync your credentials", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .execute();
+    }
+        public void restore_data(View view){
+        check_storage_perms(this);
         // Restore
-        Toast.makeText(getApplicationContext(), "Restore data successful", Toast.LENGTH_SHORT).show();
+            new Restore.Init()
+                    .database(ViyCredDB.getInstance(this))
+                    .backupFilePath("storage/emulated/0/viyp_BKP.txt")
+//                    .secretKey("your-secret-key") // if your backup file is encrypted, this parameter is required
+                    .onWorkFinishListener(new OnWorkFinishListener() {
+                        @Override
+                        public void onFinished(boolean success, String message) {
+                            // do anything
+                            Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .execute();
     }
 
 

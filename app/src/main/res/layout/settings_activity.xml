@@ -222,29 +222,29 @@
                 android:text="@string/data"
                 android:textColor="@color/colorAccent" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/export_data"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:fontFamily="@font/capriola"-->
-            <!--                android:onClick="exportData"-->
-            <!--                android:paddingStart="30dp"-->
-            <!--                android:paddingTop="20dp"-->
-            <!--                android:paddingEnd="5dp"-->
-            <!--                android:paddingBottom="20dp"-->
-            <!--                android:text="@string/data_export" />-->
+                        <TextView
+                            android:id="@+id/export_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:onClick="export_data"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="20dp"
+                            android:text="@string/data_export" />
 
-            <!--            <TextView-->
-            <!--                android:id="@+id/restore_data"-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:fontFamily="@font/capriola"-->
-            <!--                android:onClick="restoreData"-->
-            <!--                android:paddingStart="30dp"-->
-            <!--                android:paddingTop="20dp"-->
-            <!--                android:paddingEnd="5dp"-->
-            <!--                android:paddingBottom="20dp"-->
-            <!--                android:text="@string/data_restore" />-->
+                        <TextView
+                            android:id="@+id/restore_data"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/capriola"
+                            android:onClick="restore_data"
+                            android:paddingStart="30dp"
+                            android:paddingTop="20dp"
+                            android:paddingEnd="5dp"
+                            android:paddingBottom="20dp"
+                            android:text="@string/data_restore" />
 
             <TextView
                 android:id="@+id/delete_all_data"

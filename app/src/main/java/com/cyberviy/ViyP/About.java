@@ -18,6 +18,7 @@ public class About extends AppCompatActivity {
     String[] whatsnew = {
             "Dark mode",
             "Fingerprint Auth",
+            "Backup and restore credentials to storage",
             "Minor UI changes",
             "Minor Bug fixes and Improvements",
     };
