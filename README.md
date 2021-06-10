@@ -46,11 +46,11 @@ A few of the things you can do with GitPoint:
 -   Open Source
 
 <p align="center">
-  <img src = https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/1.jpg width=700>
+  <img src = https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/1.jpg width=240 height=420>
 </p>
 
 <p align="center">
-  <img src = https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/3.jpg width=700>
+  <img src = https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/3.jpg width=240 height=420>
 </p>
 
 ## Feedback
