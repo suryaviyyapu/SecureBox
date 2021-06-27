@@ -101,6 +101,7 @@
                 android:layout_height="@dimen/text_view_size"
                 android:gravity="center"
                 android:hint="PASSWORD"
+                android:inputType="textPassword"
                 android:textSize="@dimen/text_medium_size" />
         </LinearLayout>
 
