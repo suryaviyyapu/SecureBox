@@ -24,7 +24,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:fontFamily="@font/capriola"
             android:hint="Enter old password / PIN"
             android:focusable="true" />
 
@@ -32,7 +31,6 @@
             android:id="@+id/change_password_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/capriola"
             android:hint="Enter new password / PIN"
             android:layout_margin="15dp" />
 
@@ -40,7 +38,6 @@
             android:id="@+id/change_password_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/capriola"
             android:hint="Enter new password / PIN again"
             android:layout_margin="15dp" />
 

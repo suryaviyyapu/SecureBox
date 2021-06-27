@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.cyberviy.ViyP">
+    package="com.suryaviyyapu.SecureBox">
 
     <uses-feature
         android:name="android.hardware.fingerprint"
@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash"
+            android:name="com.suryaviyyapu.SecureBox.Splash"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,32 +26,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ChangePassword" />
+        <activity android:name="com.suryaviyyapu.SecureBox.ChangePassword" />
         <activity
-            android:name=".About"
+            android:name="com.suryaviyyapu.SecureBox.About"
             android:label="Changelog" />
-        <activity android:name=".Authorize" />
+        <activity android:name="com.suryaviyyapu.SecureBox.Authorize" />
         <activity
-            android:name=".Add"
+            android:name="com.suryaviyyapu.SecureBox.Add"
             android:label="Add data" />
         <activity
-            android:name=".Modify"
+            android:name="com.suryaviyyapu.SecureBox.Modify"
             android:label="Modify data" />
-        <activity android:name=".Help" />
-        <activity android:name=".wifi" />
+        <activity android:name="com.suryaviyyapu.SecureBox.Help" />
+        <activity android:name="com.suryaviyyapu.SecureBox.wifi" />
         <activity
-            android:name=".Home"
+            android:name="com.suryaviyyapu.SecureBox.Home"
             android:label="@string/title_activity_home"
             android:launchMode="singleTop"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Settings"
+            android:name="com.suryaviyyapu.SecureBox.Settings"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".MLock"
+            android:name="com.suryaviyyapu.SecureBox.MLock"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".Welcome"
+            android:name="com.suryaviyyapu.SecureBox.Welcome"
             android:theme="@style/AppTheme.NoActionBar">
 
         </activity>

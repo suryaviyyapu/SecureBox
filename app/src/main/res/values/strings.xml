@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ViyP</string>
+    <string name="app_name">SecureBox</string>
 
     <string name="mlock_st_create_password">Create your master password</string>
     <string name="mlock_st_master_password_greet">Welcome, Enter your Master password</string>
