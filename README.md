@@ -1,6 +1,6 @@
-<h1 align="center"> ViyP </h1> <br>
+<h1 align="center"> SecureBox </h1> <br>
 <p align="center">
-    <img alt="Viyp" title="ViyP" src="https://github.com/suryaviyyapu/ViyP/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png">
+    <img alt="Viyp" title="ViyP" src="https://github.com/suryaviyyapu/SecureBox/blob/master/app/src/main/res/mipmap-xxhdpi/ic_launcher.png">
 </p>
 
 <p align="center">
@@ -29,7 +29,7 @@ Built with Java with strong encryption, ViyP is one of the most feature-rich pas
 **Available for Android.**
 
 <p align="center">
-  <img src = "https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/2.jpg" width="270">
+  <img src = "https://github.com/suryaviyyapu/SecureBox/blob/master/screenshots/2.jpg" width="270">
 </p>
 
 ## Features
@@ -46,16 +46,16 @@ A few of the things you can do with GitPoint:
 -   Open Source
 
 <p align="center">
-  <img src = https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/1.jpg width=240 height=420>
+  <img src = https://github.com/suryaviyyapu/SecureBox/blob/master/screenshots/1.jpg width=240 height=420>
 </p>
 
 <p align="center">
-  <img src = https://github.com/suryaviyyapu/ViyP/blob/master/screenshots/3.jpg width=240 height=420>
+  <img src = https://github.com/suryaviyyapu/SecureBox/blob/master/screenshots/3.jpg width=240 height=420>
 </p>
 
 ## Feedback
 
-Feel free to send us feedback on [Telegram](https://t.me/z3rod0t) or [file an issue](https://github.com/suryaviyyapu/viyp/issues/new). Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
+Feel free to send us feedback on [Telegram](https://t.me/z3rod0t) or [file an issue](https://github.com/suryaviyyapu/SecureBox/issues/new). Feature requests are always welcome. If you wish to contribute, please take a quick look at the [guidelines](./CONTRIBUTING.md)!
 
 If there's anything you'd like to chat about, please feel free to reach our [Telegram](https://t.me/z3rod0t)!
 
