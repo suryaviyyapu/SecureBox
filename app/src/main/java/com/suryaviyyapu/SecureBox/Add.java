@@ -31,12 +31,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Add extends AppCompatActivity implements View.OnClickListener {
-    public static final String EXTRA_PROVIDER_NAME = "com.cyberviy.ViyP.EXTRA_PROVIDER_NAME";
-    public static final String EXTRA_PROVIDER = "com.cyberviy.ViyP.EXTRA_PROVIDER";
-    public static final String EXTRA_ENCRYPT = "com.cyberviy.ViyP.EXTRA_ENCRYPT";
-    public static final String EXTRA_EMAIL = "com.cyberviy.ViyP.EXTRA_EMAIL";
-    public static final String EXTRA_IV = "com.cyberviy.ViyP.EXTRA_IV";
-    public static final String EXTRA_SALT = "com.cyberviy.ViyP.EXTRA_SALT";
+    public static final String EXTRA_PROVIDER_NAME = "com.suryaviyyapu.SecureBox.EXTRA_PROVIDER_NAME";
+    public static final String EXTRA_PROVIDER = "com.suryaviyyapu.SecureBox.EXTRA_PROVIDER";
+    public static final String EXTRA_ENCRYPT = "com.suryaviyyapu.SecureBox.EXTRA_ENCRYPT";
+    public static final String EXTRA_EMAIL = "com.suryaviyyapu.SecureBox.EXTRA_EMAIL";
+    public static final String EXTRA_IV = "com.suryaviyyapu.SecureBox.EXTRA_IV";
+    public static final String EXTRA_SALT = "com.suryaviyyapu.SecureBox.EXTRA_SALT";
     public static final String PASSWORD = "";
     final String PREFS_NAME = "appEssentials";
     String[] providersEmail = {

@@ -55,7 +55,7 @@ public class Home extends AppCompatActivity {
     final String PREFS_NAME = "appEssentials";
     SharedPreferences sharedPreferences;
     String repo = "suryaviyyapu";
-    String pack = "ViyP";
+    String pack = "SecureBox";
     String PREF_KEY_SECURE_CORE_MODE = "SECURE_CORE";
     MasterKey masterKey = null;
     String PASSWORD = "";
@@ -146,7 +146,7 @@ public class Home extends AppCompatActivity {
             // Setting Alert Dialog Title
             alertDialogBuilder.setTitle("Notice");
             // Setting Alert Dialog Message
-            alertDialogBuilder.setMessage("Viyp is still in beta you may face some issues.");
+            alertDialogBuilder.setMessage("SecureBox is still in beta you may face some issues.");
             //Positive button
             alertDialogBuilder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
 

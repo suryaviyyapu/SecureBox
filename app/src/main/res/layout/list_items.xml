@@ -41,7 +41,7 @@
                 android:textColor="?android:attr/textColorPrimary"
                 android:textAppearance="?attr/textAppearanceHeadline6"
                 android:fontFamily="@font/capriola"
-                android:text="admin@ViyP" />
+                android:text="admin@securebox" />
 
 
             <TextView

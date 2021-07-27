@@ -33,12 +33,12 @@ import java.security.GeneralSecurityException;
 public class Modify extends AppCompatActivity implements View.OnClickListener {
     public static final String TAG = "MODIFY";
     public static final String EXTRA_DELETE = "DELETE";
-    public static final String EXTRA_PROVIDER_NAME = "com.cyberviy.ViyP.EXTRA_PROVIDER_NAME";
-    public static final String EXTRA_ID = "com.cyberviy.ViyP.EXTRA_ID";
-    public static final String EXTRA_ENCRYPT = "com.cyberviy.ViyP.EXTRA_ENCRYPT";
-    public static final String EXTRA_EMAIL = "com.cyberviy.ViyP.EXTRA_EMAIL";
-    public static final String EXTRA_IV = "com.cyberviy.ViyP.EXTRA_IV";
-    public static final String EXTRA_SALT = "com.cyberviy.ViyP.EXTRA_SALT";
+    public static final String EXTRA_PROVIDER_NAME = "com.suryaviyyapu.SecureBox.EXTRA_PROVIDER_NAME";
+    public static final String EXTRA_ID = "com.suryaviyyapu.SecureBox.EXTRA_ID";
+    public static final String EXTRA_ENCRYPT = "com.suryaviyyapu.SecureBox.EXTRA_ENCRYPT";
+    public static final String EXTRA_EMAIL = "com.suryaviyyapu.SecureBox.EXTRA_EMAIL";
+    public static final String EXTRA_IV = "com.suryaviyyapu.SecureBox.EXTRA_IV";
+    public static final String EXTRA_SALT = "com.suryaviyyapu.SecureBox.EXTRA_SALT";
     private static final String PREFS_NAME = "appEssentials";
     EditText newPassword;
     TextView emailText, oldPassword;

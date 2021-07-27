@@ -227,7 +227,7 @@ public class Settings extends AppCompatActivity {
         new Backup.Init()
                 .database(ViyCredDB.getInstance(this))
                 .path("storage/emulated/0/")
-                .fileName("viyp_BKP.txt")
+                .fileName("securebox_BKP.txt")
 //                .secretKey("your-secret-key") //optional
                 .onWorkFinishListener(new OnWorkFinishListener() {
                     @Override
@@ -245,7 +245,7 @@ public class Settings extends AppCompatActivity {
         // Restore
             new Restore.Init()
                     .database(ViyCredDB.getInstance(this))
-                    .backupFilePath("storage/emulated/0/viyp_BKP.txt")
+                    .backupFilePath("storage/emulated/0/securebox_BKP.txt")
 //                    .secretKey("your-secret-key") // if your backup file is encrypted, this parameter is required
                     .onWorkFinishListener(new OnWorkFinishListener() {
                         @Override

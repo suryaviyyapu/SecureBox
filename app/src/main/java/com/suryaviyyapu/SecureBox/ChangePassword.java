@@ -22,7 +22,7 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public class ChangePassword extends AppCompatActivity {
-    public static final String EXTRA_TYPE_PASS = "com.cyberviy.ViyP.EXTRA_TYPE_PASS";
+    public static final String EXTRA_TYPE_PASS = "com.suryaviyyapu.SecureBox.EXTRA_TYPE_PASS";
     final String PREFS_NAME = "appEssentials";
     String TYPE_PASS_1 = "PIN";
     String TYPE_PASS_2 = "PASSWORD";

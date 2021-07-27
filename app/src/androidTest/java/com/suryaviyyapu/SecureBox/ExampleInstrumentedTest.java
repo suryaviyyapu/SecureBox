@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
-        assertEquals("com.cyberviy.ViyP", appContext.getPackageName());
+        assertEquals("com.suryaviyyapu.SecureBox", appContext.getPackageName());
     }
 }
